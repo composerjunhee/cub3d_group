@@ -26,18 +26,29 @@ DEP = $(OBJ:.o=.d)
 
 all:  $(NAME)
 
+CLR_RMV		:= \033[0m
+RED		    := \033[1;31m
+GREEN		:= \033[1;32m
+YELLOW		:= \033[1;33m
+BLUE		:= \033[1;34m
+CYAN 		:= \033[1;36m
+
 $(NAME): $(OBJ)
+	@echo "$(GREEN)Building libft library.$(CLR_RMV)"
 	@ar rc $(NAME) $(OBJ)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
+	@echo "$(GREEN)Making libft .o files.$(CLR_RMV)"
 	@cc $(CFLAGS) $(INCFLAGS) -c $< -o $@
 
 -include $(DEP)
 
 clean:
+	@echo "$(RED)Cleaning the obj folder.$(CLR_RMV)"
 	@rm -rf $(OBJ_DIR) 
 
 fclean: clean
+	@echo "$(RED)Removing the library.$(CLR_RMV)"
 	@rm -f $(NAME)
 re: fclean all

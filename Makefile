@@ -12,7 +12,7 @@ CC        := gcc
 VPATH = src:libft:inc
 FLAGS    := -Wall -Wextra -Werror -Ofast
 MAC_FLAGS    := -framework Cocoa -framework OpenGL -framework IOKit
-LIBMLX		:= ./inc/mlx
+LIBMLX		:= /inc/mlx
 SRC_DIR	:= ./src
 OBJ_DIR	:= ./obj
 LIBFT_DIR := ./libft
@@ -26,7 +26,9 @@ INC		:= -I $(HEADER) -I $(LIBMLX)/include
 
 SRCS        := main.c
                           
-OBJS        := $(SRCS:.c=.o)
+OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+
+DEP := $(OBJS:.o=.d)
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
@@ -46,26 +48,31 @@ CYAN 		:= \033[1;36m
 all: $(NAME)
 
 libmlx:
-	cmake -B $(LIBMLX)/build -S $(LIBMLX) && make -C $(LIBMLX)/build
+	@echo "$(GREEN)Making the build folder in mlx and the Makefile for it.$(CLR_RMV)"
+	@cmake -B $(LIBMLX)/build -S $(LIBMLX) && make -C $(LIBMLX)/build
 
-$(NAME): $(OBJ)
-# gcc main.c ... libmlx42.a -Iinclude -lglfw
-	make -C $(libft)
-	$(CC) $(C_FLAGS) $(SRCS) $(OBJS) $(LIBFT) -o $(NAME) 
+$(NAME): $(OBJS)
+	@make -C $(LIBFT_DIR)
+	@echo "$(GREEN)Making the cub3D program.$(CLR_RMV)"
+	@$(CC) $(C_FLAGS) $(OBJS) $(LIBFT) -o $(NAME) 
 
 $(OBJ_DIR)/%.o: %.c
-	cmake -B $(OBJ_DIR) -S
-	$(CC) $(FLAGS) $(INC) -c $< -o $@ && echo "Compiling: $(notdir $<)"
+	@echo "$(GREEN)Building the obj folder.$(CLR_RMV)"
+	@mkdir -p $(OBJ_DIR)
+	@echo "$(GREEN)Cooking up object files.$(CLR_RMV)"
+	@$(CC) $(FLAGS) $(INC) -c $< -o $@
 
 -include $(DEP)
 
 clean:
-	rm -rf $(OBJ_DIR)
-	rm -rf $(LIBMLX)/build
+	@echo "$(RED)Cleaning up obj directory and build folder in inc/mlx.$(CLR_RMV)"
+	@rm -rf $(OBJ_DIR)
+	@rm -rf $(LIBMLX)/build
 
 fclean: clean
-	rm -rf $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	@echo "$(RED)Deep cleaning program and folders.$(CLR_RMV)"
+	@rm -rf $(NAME)
+	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
