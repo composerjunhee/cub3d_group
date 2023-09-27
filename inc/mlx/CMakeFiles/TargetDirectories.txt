@@ -1,0 +1,7 @@
+/Users/rrask/Documents/Cursus42/cub3d/inc/mlx/CMakeFiles/mlx42.dir
+/Users/rrask/Documents/Cursus42/cub3d/inc/mlx/CMakeFiles/edit_cache.dir
+/Users/rrask/Documents/Cursus42/cub3d/inc/mlx/CMakeFiles/rebuild_cache.dir
+/Users/rrask/Documents/Cursus42/cub3d/inc/mlx/CMakeFiles/list_install_components.dir
+/Users/rrask/Documents/Cursus42/cub3d/inc/mlx/CMakeFiles/install.dir
+/Users/rrask/Documents/Cursus42/cub3d/inc/mlx/CMakeFiles/install/local.dir
+/Users/rrask/Documents/Cursus42/cub3d/inc/mlx/CMakeFiles/install/strip.dir
