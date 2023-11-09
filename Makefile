@@ -1,79 +1,73 @@
-#  |  |  ___ \    \  |         |
-#  |  |     ) |  |\/ |   _  |  |  /   _ 
-# ___ __|  __/   |   |  (   |    <    __/ 
-#    _|  _____| _|  _| \__,_| _|\_\ \___|
-#                              by RUSH
-################################################################################
-#                                     CONFIG                                   #
-################################################################################
+NAME 		= cub3D
 
-NAME        := cub3D
-CC        := gcc
-VPATH = src:libft:inc
-FLAGS    := -Wall -Wextra -Werror -Ofast
-MAC_FLAGS    := -framework Cocoa -framework OpenGL -framework IOKit
-LIBMLX		:= /inc/mlx
-SRC_DIR	:= ./src
-OBJ_DIR	:= ./obj
-LIBFT_DIR := ./libft
-LIBFT := $(LIBFT_DIR)/libft.a
-HEADER := ./inc
-INC		:= -I $(HEADER) -I $(LIBMLX)/include
+S			= src/
+O			= obj/
+I			= inc/
+LIBFT_I		= libft/inc
 
-################################################################################
-#                                 PROGRAM'S SRCS                               #
-################################################################################
+CC			= cc
+CFLAGS		= -Wall -Werror -Wextra
+INCLUDES	= -I$I -I$(LIBFT_I) -Iinclude -I./MLX42/include
+LIBRARIES	= -L./libft -lft -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -L./build/ -lmlx42
+FSANITIZE	=
 
-SRCS        := main.c
-                          
-OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+AR			= ar
+ARFLAGS		= rcs
 
-DEP := $(OBJS:.o=.d)
+SRC 		= \
+$S/main.c
 
-.c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+OBJ			= $(SRC:$S%=$O%.o)
 
-################################################################################
-#                                  Makefile  objs                              #
-################################################################################
+RM			= /bin/rm -f
+RMDIR		= /bin/rm -rf
 
+LIBFT_DIR	= ./libft
+LIBFT		= $(LIBFT_DIR)/libft.a
+LIBFT_FLAGS	=
 
-CLR_RMV		:= \033[0m
-RED		    := \033[1;31m
-GREEN		:= \033[1;32m
-YELLOW		:= \033[1;33m
-BLUE		:= \033[1;34m
-CYAN 		:= \033[1;36m
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-libmlx:
-	@echo "$(GREEN)Making the build folder in mlx and the Makefile for it.$(CLR_RMV)"
-	@cmake -B $(LIBMLX)/build -S $(LIBMLX) && make -C $(LIBMLX)/build
+$O:
+	@mkdir $@
 
-$(NAME): $(OBJS)
-	@make -C $(LIBFT_DIR)
-	@echo "$(GREEN)Making the cub3D program.$(CLR_RMV)"
-	@$(CC) $(C_FLAGS) $(OBJS) $(LIBFT) -o $(NAME) 
+$(OBJ): | $O
 
-$(OBJ_DIR)/%.o: %.c
-	@echo "$(GREEN)Building the obj folder.$(CLR_RMV)"
-	@mkdir -p $(OBJ_DIR)
-	@echo "$(GREEN)Cooking up object files.$(CLR_RMV)"
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@
 
--include $(DEP)
+$(OBJ): $O%.o: $S%
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-clean:
-	@echo "$(RED)Cleaning up obj directory and build folder in inc/mlx.$(CLR_RMV)"
-	@rm -rf $(OBJ_DIR)
-	@rm -rf $(LIBMLX)/build
+$(NAME): $(LIBFT) $(OBJ)
+	cmake -B build MLX42
+	cmake --build build -j4
+	$(CC) $(OBJ) $(LIBRARIES) $(FSANITIZE) -framework Cocoa -framework OpenGL -framework IOKit -o $(NAME)
+
+$(LIBFT):
+	make FLAGS=$(LIBFT_FLAGS) -C $(LIBFT_DIR)
+
+cleanobjdir: $O
+	$(RMDIR) $O
+
+clean: cleanobjdir
 
 fclean: clean
-	@echo "$(RED)Deep cleaning program and folders.$(CLR_RMV)"
-	@rm -rf $(NAME)
-	@make -C $(LIBFT_DIR) fclean
+	make fclean -C libft
+	$(RM) $(NAME)
 
-re: fclean all
+re:
+	@make fclean
+	@make all
 
-.PHONY: all, clean, fclean, re, libmlx
+run_test: $(LIBFT)
+	make CUB3D="$(SRC)" -C test
+
+
+debug: CFLAGS := $(filter-out -O3,$(CFLAGS))
+debug: CFLAGS += -g
+debug: LIBFT_FLAGS += -g
+debug: $(NAME)
+
+what: FSANITIZE += -fsanitize=address -g
+what: $(NAME)
