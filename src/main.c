@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/14 13:23:11 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/14 14:51:13 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	get_map_params(int fd, t_params *params)
 {
 	char	*line;
+	int		
 
 	line = get_next_line(fd);
 	while (line)
@@ -24,6 +25,10 @@ static void	get_map_params(int fd, t_params *params)
 		params->map[0] = malloc(sizeof(char *) + ft_strlen(line) + 1);
 	}
 }
+
+// Function that returns a bool which checks for the beginning of the map.
+// Return value is the number of lines! 
+// If there is 
 
 int	main(void)
 {
