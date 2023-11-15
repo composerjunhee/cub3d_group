@@ -3,7 +3,7 @@ NAME 		= cub3D
 S			= src/
 O			= obj/
 I			= inc/
-LIBFT_I		= libft/inc
+LIBFT_I		= libft/includes
 
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
