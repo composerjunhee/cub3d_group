@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/15 13:50:58 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/15 14:34:42 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ static int	is_file_valid(int fd, t_params *params)
 	{
 		if (!line)
 			break ;
-		if (ft_strncmp("NO ", (const char *)line, 2))
+		if (ft_strncmp("NO ", (const char *)line, 2) == 0)
 			params->no_texture = ft_strdup(line);
-		if (ft_strncmp("SO ", (const char *)line, 2))
+		else if (ft_strncmp("SO ", (const char *)line, 2) == 0)
 			params->so_texture = ft_strdup(line);
-		if (ft_strncmp("WE ", (const char *)line, 2))
+		else if (ft_strncmp("WE ", (const char *)line, 2) == 0)
 			params->we_texture = ft_strdup(line);
-		if (ft_strncmp("EA ", (const char *)line, 2))
+		else if (ft_strncmp("EA ", (const char *)line, 2) == 0)
 			params->ea_texture = ft_strdup(line);
-		if (ft_strncmp("F ", (const char *)line, 1))
+		else if (ft_strncmp("F ", (const char *)line, 1) == 0)
 			params->f_values = ft_strdup(line);
-		if (ft_strncmp("C ", (const char *)line, 1))
+		else if (ft_strncmp("C ", (const char *)line, 1) == 0)
 			params->c_values = ft_strdup(line);
 		free(line);
 		line = NULL;
@@ -50,12 +50,14 @@ static void	get_map_params(int fd, t_params *params)
 
 	file_is_valid = is_file_valid(fd, params);
 	if (file_is_valid)
-		ft_printf("What is up? /n");
+	{
+
+	}
 }
 
 static void	init_params(t_params *params)
 {
-	ft_bzero(&params, sizeof(params));
+	ft_bzero(params, sizeof(*params));
 }
 
 int	main(int argc, char **argv)
