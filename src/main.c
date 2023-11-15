@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/15 14:34:42 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/15 16:30:52 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ static int	is_file_valid(int fd, t_params *params)
 {
 	char	*line;
 	int		count;
+	int		idx;
 
 	count = 0;
+	idx = 0;
 	line = get_next_line(fd);
 	if (!line)
 		return (-1);
@@ -25,23 +27,37 @@ static int	is_file_valid(int fd, t_params *params)
 	{
 		if (!line)
 			break ;
-		if (ft_strncmp("NO ", (const char *)line, 2) == 0)
+		if (ft_strncmp("NO ", (const char *)line, 3) == 0)
 			params->no_texture = ft_strdup(line);
-		else if (ft_strncmp("SO ", (const char *)line, 2) == 0)
+		else if (ft_strncmp("SO ", (const char *)line, 3) == 0)
 			params->so_texture = ft_strdup(line);
-		else if (ft_strncmp("WE ", (const char *)line, 2) == 0)
+		else if (ft_strncmp("WE ", (const char *)line, 3) == 0)
 			params->we_texture = ft_strdup(line);
-		else if (ft_strncmp("EA ", (const char *)line, 2) == 0)
+		else if (ft_strncmp("EA ", (const char *)line, 3) == 0)
 			params->ea_texture = ft_strdup(line);
-		else if (ft_strncmp("F ", (const char *)line, 1) == 0)
+		else if (ft_strncmp("F ", (const char *)line, 2) == 0)
 			params->f_values = ft_strdup(line);
-		else if (ft_strncmp("C ", (const char *)line, 1) == 0)
+		else if (ft_strncmp("C ", (const char *)line, 2) == 0)
 			params->c_values = ft_strdup(line);
+		else
+		{
+			while (line[idx])
+			{
+				if (line[idx] != ' ' && line [idx] != '\t' && line [idx] != '\n' && line [idx] != '\0')
+				{
+					ft_printf("%s", line);
+					count++;
+					idx = 0;
+					break ;
+				}
+				idx++;
+			}
+		}
 		free(line);
 		line = NULL;
 		line = get_next_line(fd);
 	}
-	return (1);
+	return (count);
 }
 
 static void	get_map_params(int fd, t_params *params)
@@ -49,6 +65,7 @@ static void	get_map_params(int fd, t_params *params)
 	int		file_is_valid;
 
 	file_is_valid = is_file_valid(fd, params);
+	ft_printf("lines are: %d\n", file_is_valid);
 	if (file_is_valid)
 	{
 
