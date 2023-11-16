@@ -6,30 +6,105 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/16 12:35:59 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/16 18:20:53 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// Needs to remove the prefix before each texture string before attempting to load it.
-static void	handle_params(char *line, t_params *params)
+static void	free_map_params(t_params *params)
 {
-	if (ft_strncmp("NO ", (const char *)line, 3) == 0)
-		params->no_texture = mlx_load_png(line);
-	else if (ft_strncmp("SO ", (const char *)line, 3) == 0)
-		params->so_texture = mlx_load_png(line);
-	else if (ft_strncmp("WE ", (const char *)line, 3) == 0)
-		params->we_texture = mlx_load_png(line);
-	else if (ft_strncmp("EA ", (const char *)line, 3) == 0)
-		params->ea_texture = mlx_load_png(line);
-	else if (ft_strncmp("F ", (const char *)line, 2) == 0)
-		params->f_values = ft_strdup(line);
-	else if (ft_strncmp("C ", (const char *)line, 2) == 0)
-		params->c_values = ft_strdup(line);
+	if (params->c_values)
+		free(params->c_values);
+	if (params->f_values)
+		free(params->f_values);
+	if (params->ea_texture)
+		free(params->ea_texture);
+	if (params->no_texture)
+		free(params->no_texture);
+	if (params->we_texture)
+		free(params->we_texture);
+	if (params->so_texture)
+		free(params->so_texture);
+	if (params->map)
+	{
+		while (*params->map)
+		{
+			free(params->map);
+			params->map++;
+		}
+		free(params->map);
+	}
 }
 
-static int	handle_map(char *line, t_params *params)
+// Needs to remove the prefix before each texture string before attempting to load it.
+static int	handle_params(char *line, t_params *params)
+{
+	char	*trimmed;
+	char	*trimmed_more;
+	int		param_count;
+
+	trimmed = NULL;
+	trimmed_more = NULL;
+	param_count = 0;
+	if (ft_strncmp("NO ", (const char *)line, 3) == 0)
+	{
+		trimmed = ft_strtrim(line, "NO ");
+		trimmed_more = ft_strtrim(trimmed, "\n");
+		params->no_texture = mlx_load_png(trimmed_more);
+		free(trimmed);
+		free(trimmed_more);
+		trimmed = NULL;
+		trimmed_more = NULL;
+		param_count++;
+	}
+	else if (ft_strncmp("SO ", (const char *)line, 3) == 0)
+	{
+		trimmed = ft_strtrim(line, "SO ");
+		trimmed_more = ft_strtrim(trimmed, "\n");
+		params->so_texture = mlx_load_png(trimmed_more);
+		free(trimmed);
+		free(trimmed_more);
+		trimmed = NULL;
+		trimmed_more = NULL;
+		param_count++;
+	}
+	else if (ft_strncmp("WE ", (const char *)line, 3) == 0)
+	{
+		trimmed = ft_strtrim(line, "WE ");
+		trimmed_more = ft_strtrim(trimmed, "\n");
+		params->we_texture = mlx_load_png(trimmed_more);
+		free(trimmed);
+		free(trimmed_more);
+		trimmed = NULL;
+		trimmed_more = NULL;
+		param_count++;
+	}
+	else if (ft_strncmp("EA ", (const char *)line, 3) == 0)
+	{
+		trimmed = ft_strtrim(line, "EA ");
+		trimmed_more = ft_strtrim(trimmed, "\n");
+		params->ea_texture = mlx_load_png(trimmed_more);
+		free(trimmed);
+		free(trimmed_more);
+		trimmed = NULL;
+		trimmed_more = NULL;
+		param_count++;
+	}
+	else if (ft_strncmp("F ", (const char *)line, 2) == 0)
+	{
+		params->f_values = ft_strdup(line);
+		param_count++;
+	}
+	else if (ft_strncmp("C ", (const char *)line, 2) == 0)
+	{
+		params->c_values = ft_strdup(line);
+		param_count++;
+	}
+	return (param_count);
+}
+
+static int	handle_map(char *line)
 {
 	int		count;
 	int		idx;
@@ -55,8 +130,10 @@ static int	is_file_valid(int fd, t_params *params)
 {
 	char	*line;
 	int		count;
+	int		param_count;
 
 	count = 0;
+	param_count = 0;
 	line = get_next_line(fd);
 	if (!line)
 		return (-1);
@@ -64,12 +141,15 @@ static int	is_file_valid(int fd, t_params *params)
 	{
 		if (!line)
 			break ;
-		handle_params(line, params);
-		count = handle_map(line, params);
+		if (param_count == 6)
+			count += handle_map(line);
+		param_count += handle_params(line, params);
 		free(line);
 		line = NULL;
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	return (count);
 }
 
@@ -94,7 +174,7 @@ static void	init_params(t_params *params, mlx_t *mlx)
 int	main(int argc, char **argv)
 {
 	t_params	params;
-	mlx_t		*mlx;
+	mlx_t		mlx;
 	int			fd;
 
 	if (argc != 2)
@@ -110,5 +190,6 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	get_map_params(fd, &params);
+	free_map_params(&params);
 	return (0);
 }

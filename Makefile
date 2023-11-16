@@ -6,7 +6,7 @@ I			= inc/
 LIBFT_I		= libft/includes
 
 CC			= cc
-CFLAGS		= -Wall -Werror -Wextra -g
+CFLAGS		= -Wall -Werror -Wextra
 INCLUDES	= -I$I -I$(LIBFT_I) -Iinclude -I./MLX42/include
 LIBRARIES	= -L./libft -lft -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -L./build/ -lmlx42
 FSANITIZE	=

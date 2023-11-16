@@ -6,14 +6,13 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/16 12:24:55 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/16 15:49:30 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 # define MAP_PATH "../map/basic.cub"
-# define TEXTURE_PATH "../textures/"
 # define SCREEN_WIDTH 960
 # define SCREEN_HEIGHT 540
 
