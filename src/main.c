@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/16 18:20:53 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/16 18:48:48 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ static void	free_map_params(t_params *params)
 		free(params->we_texture);
 	if (params->so_texture)
 		free(params->so_texture);
-	if (params->map)
-	{
-		while (*params->map)
-		{
-			free(params->map);
-			params->map++;
-		}
-		free(params->map);
-	}
+	// if (params->map)
+	// {
+	// 	while (*params->map)
+	// 	{
+	// 		free(params->map);
+	// 		params->map++;
+	// 	}
+	// 	free(params->map);
+	// }
 }
 
 // Needs to remove the prefix before each texture string before attempting to load it.
@@ -126,7 +126,7 @@ static int	handle_map(char *line)
 	return (count);
 }
 
-static int	is_file_valid(int fd, t_params *params)
+static int	are_params_valid(int fd, t_params *params)
 {
 	char	*line;
 	int		count;
@@ -144,6 +144,7 @@ static int	is_file_valid(int fd, t_params *params)
 		if (param_count == 6)
 			count += handle_map(line);
 		param_count += handle_params(line, params);
+		// This needs a 
 		free(line);
 		line = NULL;
 		line = get_next_line(fd);
@@ -155,13 +156,14 @@ static int	is_file_valid(int fd, t_params *params)
 
 static void	get_map_params(int fd, t_params *params)
 {
-	int		file_is_valid;
+	int		map_row_amount;
+	char	*line;
 
-	file_is_valid = is_file_valid(fd, params);
-	ft_printf("lines are: %d\n", file_is_valid);
-	if (file_is_valid)
+	line = NULL;
+	map_row_amount = are_params_valid(fd, params);
+	if (map_row_amount)
 	{
-		
+		params->map = malloc(sizeof(char **) * map_row_amount + 1);
 	}
 }
 
