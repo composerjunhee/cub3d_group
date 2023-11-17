@@ -6,7 +6,7 @@
 /*   By: junheeki <junheeki@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:21:39 by junheeki          #+#    #+#             */
-/*   Updated: 2023/11/17 15:39:23 by junheeki         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:42:44 by junheeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	error_handler(int error_code)
 	else if (error_code == 2)
 		ft_putstr_fd("Error 2\n", 2);
 	else
-		ft_putstr_fd("Unknown error occurred\n", 2);
+		ft_putstr_fd("Unknown1 error occurred\n", 2);
 }
