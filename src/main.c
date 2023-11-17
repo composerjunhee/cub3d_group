@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/17 15:45:27 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/17 16:37:30 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static	void	load_texture(char *line, mlx_texture_t **texture)
 	*texture = mlx_load_png(line);
 }
 
-// Needs to remove the prefix before each texture string before attempting to load it.
 static int	handle_params(char *line, t_params *params)
 {
 	int	param_count;
@@ -92,7 +91,6 @@ static int	handle_map(char *line)
 
 	idx = 0;
 	count = 0;
-	// This does not handle lines that aren't map legal.
 	while (line[idx])
 	{
 		if (line[idx] != ' ' && line[idx] != '\t' && line[idx] != '\n'
@@ -145,6 +143,8 @@ static void	get_map_params(int fd, t_params *params)
 	if (map_row_amount)
 	{
 		// params->map = malloc(sizeof(char **) * map_row_amount + 1);
+		// Set all the params->map[indexes] to the map rows.
+		// Then check them for validity.
 		// exit(0);
 	}
 }
