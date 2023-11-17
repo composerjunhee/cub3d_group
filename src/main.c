@@ -6,11 +6,12 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/16 18:48:48 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/17 15:10:05 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 static void	free_map_params(t_params *params)
 {
@@ -19,13 +20,13 @@ static void	free_map_params(t_params *params)
 	if (params->f_values)
 		free(params->f_values);
 	if (params->ea_texture)
-		free(params->ea_texture);
+		mlx_delete_texture(params->ea_texture);
 	if (params->no_texture)
-		free(params->no_texture);
+		mlx_delete_texture(params->no_texture);
 	if (params->we_texture)
-		free(params->we_texture);
+		mlx_delete_texture(params->we_texture);
 	if (params->so_texture)
-		free(params->so_texture);
+		mlx_delete_texture(params->so_texture);
 	// if (params->map)
 	// {
 	// 	while (*params->map)
@@ -136,7 +137,7 @@ static int	are_params_valid(int fd, t_params *params)
 	param_count = 0;
 	line = get_next_line(fd);
 	if (!line)
-		return (-1);
+		exit(0);
 	while (line)
 	{
 		if (!line)
@@ -144,7 +145,6 @@ static int	are_params_valid(int fd, t_params *params)
 		if (param_count == 6)
 			count += handle_map(line);
 		param_count += handle_params(line, params);
-		// This needs a 
 		free(line);
 		line = NULL;
 		line = get_next_line(fd);
@@ -160,10 +160,12 @@ static void	get_map_params(int fd, t_params *params)
 	char	*line;
 
 	line = NULL;
+	map_row_amount = 0;
 	map_row_amount = are_params_valid(fd, params);
 	if (map_row_amount)
 	{
-		params->map = malloc(sizeof(char **) * map_row_amount + 1);
+		// params->map = malloc(sizeof(char **) * map_row_amount + 1);
+		// exit(0);
 	}
 }
 
