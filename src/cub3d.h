@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/20 08:07:56 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/20 12:37:25 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_params
 	char			*c_values;
 }					t_params;
 
-void skip_leading_whitespace(char *line);
+void	skip_leading_whitespace(char *line);
+void	error_handler(int error_code);
 
 #endif
