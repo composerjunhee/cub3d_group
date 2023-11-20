@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/16 15:49:30 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/20 08:07:56 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,18 @@
 # include <MLX42/MLX42.h>
 # include <fcntl.h>
 
+enum codes
+{
+	WRONG_INPUT = -1,
+	FD_FAILURE = -2,
+	WRONG_PATH = -3,
+	
+} code;
 typedef struct s_params
 {
 	int				x_pos;
 	int				y_pos;
+	int				map_start;
 	char			**map;
 	mlx_texture_t	*no_texture;
 	mlx_texture_t	*ea_texture;
@@ -32,5 +40,7 @@ typedef struct s_params
 	char			*f_values;
 	char			*c_values;
 }					t_params;
+
+void skip_leading_whitespace(char *line);
 
 #endif

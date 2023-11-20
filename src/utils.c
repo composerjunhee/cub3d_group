@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 15:21:39 by junheeki          #+#    #+#             */
-/*   Updated: 2023/11/20 08:10:37 by rrask            ###   ########.fr       */
+/*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
+/*   Updated: 2023/11/20 07:41:00 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "cub3d.h"
 
-void	error_handler(int error_code)
+void skip_leading_whitespace(char *line)
 {
-	if (error_code == WRONG_INPUT)
-		ft_putstr_fd("Please provide proper path to map.\n", 2);
-	else if (error_code == FD_FAILURE)
-		ft_putstr_fd("Fd failed to open.\n", 2);
-	else if (error_code == WRONG_PATH)
-		ft_putstr_fd("Given path is not valid.\n", 2);
-	else
-		ft_putstr_fd("Unknown1 error occurred.\n", 2);
+	while (line)
+	{
+		if (*line == 32 || *line >= 9 && *line <= 13)
+			line++;
+		else
+			return (0);
+	}
+	return (1);
 }
-

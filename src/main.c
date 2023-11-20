@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/17 16:37:30 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/20 08:11:10 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,23 @@ static int	handle_params(char *line, t_params *params)
 	return (param_count);
 }
 
+static void fill_map(char **map, int fd)
+{
+	char *line;
+
+	line = NULL;
+
+	line = get_next_line(fd);
+	if (!line)
+		exit(0);
+	while (line)
+	{
+		if (!line)
+			exit(0);
+		//iterate through the map file for the start of the map.
+	}
+}
+
 static int	handle_map(char *line)
 {
 	int	count;
@@ -119,16 +136,16 @@ static int	are_params_valid(int fd, t_params *params)
 	while (line)
 	{
 		if (!line)
-			break ;
+			exit(0);
 		if (param_count == 6)
+		{
 			count += handle_map(line);
+		}
 		param_count += handle_params(line, params);
 		free(line);
 		line = NULL;
 		line = get_next_line(fd);
 	}
-	if (line)
-		free(line);
 	return (count);
 }
 
@@ -142,7 +159,8 @@ static void	get_map_params(int fd, t_params *params)
 	map_row_amount = are_params_valid(fd, params);
 	if (map_row_amount)
 	{
-		// params->map = malloc(sizeof(char **) * map_row_amount + 1);
+		params->map = malloc(sizeof(char **) * map_row_amount + 1);
+		fill_map(params->map, fd);
 		// Set all the params->map[indexes] to the map rows.
 		// Then check them for validity.
 		// exit(0);
@@ -162,17 +180,11 @@ int	main(int argc, char **argv)
 	int			fd;
 
 	if (argc != 2)
-	{
-		ft_putstr_fd("Need a path to the .cub file.", 2);
-		return (-1);
-	}
+		error_handler(WRONG_INPUT);
 	init_params(&params, &mlx);
 	fd = open(argv[1], 2);
 	if (fd == -1)
-	{
-		ft_putstr_fd("FD failed to open\n", 2);
-		return (-1);
-	}
+		error_handler(FD_FAILURE);
 	get_map_params(fd, &params);
 	free_map_params(&params);
 	return (0);
