@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake
+CMAKE_COMMAND = /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake
 
 # The command to remove a file.
-RM = /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E rm -f
+RM = /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/rrask/Documents/Cursus42/cub3d/MLX42
+CMAKE_SOURCE_DIR = /Users/junheeki/Desktop/cubreal/MLX42
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/rrask/Documents/Cursus42/cub3d/build
+CMAKE_BINARY_DIR = /Users/junheeki/Desktop/cubreal/build
 
 # Utility rule file for uninstall.
 
@@ -67,7 +67,7 @@ include _deps/glfw-build/CMakeFiles/uninstall.dir/compiler_depend.make
 include _deps/glfw-build/CMakeFiles/uninstall.dir/progress.make
 
 _deps/glfw-build/CMakeFiles/uninstall:
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -P /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build/cmake_uninstall.cmake
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -P /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build/cmake_uninstall.cmake
 
 uninstall: _deps/glfw-build/CMakeFiles/uninstall
 uninstall: _deps/glfw-build/CMakeFiles/uninstall.dir/build.make
@@ -78,10 +78,10 @@ _deps/glfw-build/CMakeFiles/uninstall.dir/build: uninstall
 .PHONY : _deps/glfw-build/CMakeFiles/uninstall.dir/build
 
 _deps/glfw-build/CMakeFiles/uninstall.dir/clean:
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build && $(CMAKE_COMMAND) -P CMakeFiles/uninstall.dir/cmake_clean.cmake
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build && $(CMAKE_COMMAND) -P CMakeFiles/uninstall.dir/cmake_clean.cmake
 .PHONY : _deps/glfw-build/CMakeFiles/uninstall.dir/clean
 
 _deps/glfw-build/CMakeFiles/uninstall.dir/depend:
-	cd /Users/rrask/Documents/Cursus42/cub3d/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/rrask/Documents/Cursus42/cub3d/MLX42 /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-src /Users/rrask/Documents/Cursus42/cub3d/build /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/junheeki/Desktop/cubreal/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/junheeki/Desktop/cubreal/MLX42 /Users/junheeki/Desktop/cubreal/build/_deps/glfw-src /Users/junheeki/Desktop/cubreal/build /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : _deps/glfw-build/CMakeFiles/uninstall.dir/depend
 

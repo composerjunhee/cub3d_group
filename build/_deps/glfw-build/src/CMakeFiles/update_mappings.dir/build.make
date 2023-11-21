@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake
+CMAKE_COMMAND = /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake
 
 # The command to remove a file.
-RM = /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E rm -f
+RM = /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/rrask/Documents/Cursus42/cub3d/MLX42
+CMAKE_SOURCE_DIR = /Users/junheeki/Desktop/cubreal/MLX42
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/rrask/Documents/Cursus42/cub3d/build
+CMAKE_BINARY_DIR = /Users/junheeki/Desktop/cubreal/build
 
 # Utility rule file for update_mappings.
 
@@ -67,8 +67,8 @@ include _deps/glfw-build/src/CMakeFiles/update_mappings.dir/compiler_depend.make
 include _deps/glfw-build/src/CMakeFiles/update_mappings.dir/progress.make
 
 _deps/glfw-build/src/CMakeFiles/update_mappings:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/rrask/Documents/Cursus42/cub3d/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Updating gamepad mappings from upstream repository"
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-src/src && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -P /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-src/CMake/GenerateMappings.cmake mappings.h.in mappings.h
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/junheeki/Desktop/cubreal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Updating gamepad mappings from upstream repository"
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-src/src && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -P /Users/junheeki/Desktop/cubreal/build/_deps/glfw-src/CMake/GenerateMappings.cmake mappings.h.in mappings.h
 
 update_mappings: _deps/glfw-build/src/CMakeFiles/update_mappings
 update_mappings: _deps/glfw-build/src/CMakeFiles/update_mappings.dir/build.make
@@ -79,10 +79,10 @@ _deps/glfw-build/src/CMakeFiles/update_mappings.dir/build: update_mappings
 .PHONY : _deps/glfw-build/src/CMakeFiles/update_mappings.dir/build
 
 _deps/glfw-build/src/CMakeFiles/update_mappings.dir/clean:
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build/src && $(CMAKE_COMMAND) -P CMakeFiles/update_mappings.dir/cmake_clean.cmake
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build/src && $(CMAKE_COMMAND) -P CMakeFiles/update_mappings.dir/cmake_clean.cmake
 .PHONY : _deps/glfw-build/src/CMakeFiles/update_mappings.dir/clean
 
 _deps/glfw-build/src/CMakeFiles/update_mappings.dir/depend:
-	cd /Users/rrask/Documents/Cursus42/cub3d/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/rrask/Documents/Cursus42/cub3d/MLX42 /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-src/src /Users/rrask/Documents/Cursus42/cub3d/build /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build/src /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build/src/CMakeFiles/update_mappings.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/junheeki/Desktop/cubreal/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/junheeki/Desktop/cubreal/MLX42 /Users/junheeki/Desktop/cubreal/build/_deps/glfw-src/src /Users/junheeki/Desktop/cubreal/build /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build/src /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build/src/CMakeFiles/update_mappings.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : _deps/glfw-build/src/CMakeFiles/update_mappings.dir/depend
 

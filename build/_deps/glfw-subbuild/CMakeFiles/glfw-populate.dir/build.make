@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake
+CMAKE_COMMAND = /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake
 
 # The command to remove a file.
-RM = /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E rm -f
+RM = /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild
+CMAKE_SOURCE_DIR = /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild
+CMAKE_BINARY_DIR = /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild
 
 # Utility rule file for glfw-populate.
 
@@ -77,60 +77,60 @@ CMakeFiles/glfw-populate-complete: glfw-populate-prefix/src/glfw-populate-stamp/
 CMakeFiles/glfw-populate-complete: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build
 CMakeFiles/glfw-populate-complete: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install
 CMakeFiles/glfw-populate-complete: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'glfw-populate'"
-	/Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E make_directory /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles
-	/Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E touch /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate-complete
-	/Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E touch /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-done
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'glfw-populate'"
+	/Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E make_directory /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles
+	/Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E touch /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate-complete
+	/Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E touch /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-done
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update:
 .PHONY : glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'glfw-populate'"
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E echo_append
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E touch /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'glfw-populate'"
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E echo_append
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E touch /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure: glfw-populate-prefix/tmp/glfw-populate-cfgcmd.txt
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'glfw-populate'"
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E echo_append
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E touch /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'glfw-populate'"
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E echo_append
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E touch /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-gitinfo.txt
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'glfw-populate'"
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -P /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitclone.cmake
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E touch /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'glfw-populate'"
+	cd /Users/junheeki/Desktop/cubreal/build/_deps && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -P /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitclone.cmake
+	cd /Users/junheeki/Desktop/cubreal/build/_deps && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E touch /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'glfw-populate'"
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E echo_append
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E touch /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'glfw-populate'"
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E echo_append
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E touch /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'glfw-populate'"
-	/Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -Dcfgdir= -P /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-mkdirs.cmake
-	/Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E touch /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'glfw-populate'"
+	/Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -Dcfgdir= -P /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-mkdirs.cmake
+	/Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E touch /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch-info.txt
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "No patch step for 'glfw-populate'"
-	/Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E echo_append
-	/Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E touch /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "No patch step for 'glfw-populate'"
+	/Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E echo_append
+	/Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E touch /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update:
 .PHONY : glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'glfw-populate'"
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E echo_append
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-build && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -E touch /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'glfw-populate'"
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E echo_append
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-build && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -E touch /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update: glfw-populate-prefix/tmp/glfw-populate-gitupdate.cmake
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update-info.txt
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'glfw-populate'"
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-src && /Users/rrask/.brew/Cellar/cmake/3.27.7/bin/cmake -Dcan_fetch=YES -P /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitupdate.cmake
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'glfw-populate'"
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-src && /Users/junheeki/.brew/Cellar/cmake/3.27.8/bin/cmake -Dcan_fetch=YES -P /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitupdate.cmake
 
 glfw-populate: CMakeFiles/glfw-populate
 glfw-populate: CMakeFiles/glfw-populate-complete
@@ -154,6 +154,6 @@ CMakeFiles/glfw-populate.dir/clean:
 .PHONY : CMakeFiles/glfw-populate.dir/clean
 
 CMakeFiles/glfw-populate.dir/depend:
-	cd /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild /Users/rrask/Documents/Cursus42/cub3d/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild /Users/junheeki/Desktop/cubreal/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/glfw-populate.dir/depend
 
