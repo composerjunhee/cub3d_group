@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: junheeki <junheeki@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/21 16:57:52 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/21 18:45:39 by junheeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	free_map_params(t_params *params)
 	int	i;
 
 	i = 0;
-
 	if (params->c_values)
 		free(params->c_values);
 	if (params->f_values)
@@ -43,9 +42,9 @@ static void	free_map_params(t_params *params)
 		free(params->map_path);
 }
 
-static	void	load_texture(char *line, mlx_texture_t **texture)
+static void	load_texture(char *line, mlx_texture_t **texture)
 {
-	int		len;
+	int	len;
 
 	len = ft_strlen(line);
 	line[len - 1] = '\0';
@@ -87,7 +86,6 @@ static int	handle_params(char *line, t_params *params)
 	return (0);
 }
 
-
 static void	fill_map(t_params *params, int fd)
 {
 	char	*line;
@@ -100,12 +98,12 @@ static void	fill_map(t_params *params, int fd)
 	while (read_line)
 	{
 		line = ft_strjoinfree(line, read_line);
-		free (read_line);
+		free(read_line);
 		read_line = NULL;
 		read_line = get_next_line(fd);
 	}
 	params->map = ft_split(line, '\n');
-	free (line);
+	free(line);
 }
 
 static void	are_params_valid(int fd, t_params *params)
@@ -123,7 +121,7 @@ static void	are_params_valid(int fd, t_params *params)
 			error_handler(GNL_FAILURE);
 		if (param_count == 6)
 		{
-			free (line);
+			free(line);
 			return ;
 		}
 		param_count += handle_params(line, params);
@@ -135,38 +133,51 @@ static void	are_params_valid(int fd, t_params *params)
 
 static void	get_map_params(int fd, t_params *params)
 {
-	int		map_row_amount;
+	int	map_row_amount;
 
 	map_row_amount = 0;
 	are_params_valid(fd, params);
 	fill_map(params, fd);
 }
 
-static void	init_params(t_params *params, mlx_t *mlx)
+static void	init_params(t_params *params, mlx_t **mlx, mlx_image_t *image)
 {
-	mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Vi dy a gem", true);
+	if (!(*mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Vi dy a gem", true)))
+	{
+		error_handler(FD_FAILURE);
+	}
+	if (!(image = mlx_new_image(*mlx, 128, 128)))
+	{
+		mlx_close_window(*mlx);
+		error_handler(FD_FAILURE);
+	}
+	if (mlx_image_to_window(*mlx, image, 0, 0) == -1)
+	{
+		mlx_close_window(*mlx);
+		error_handler(FD_FAILURE);
+	}
 	ft_bzero(params, sizeof(*params));
 }
 
 int	main(int argc, char **argv)
 {
-	t_params	params;
-	mlx_t		mlx;
-	int			fd;
-	int i = 0;
+	t_params			params;
+	mlx_t				*mlx;
+	int					fd;
+	int					i;
+	static mlx_image_t	image;
 
+	i = 0;
 	if (argc != 2)
 		error_handler(WRONG_INPUT);
-	init_params(&params, &mlx);
+	init_params(&params, &mlx, &image);
 	params.map_path = ft_strdup(argv[1]);
 	fd = open(params.map_path, 2);
 	if (fd == -1)
 		error_handler(FD_FAILURE);
 	get_map_params(fd, &params);
-	while (params.map[i])
-	{
-		ft_printf("%s\n", params.map[i++]);
-	}
+	mlx_loop(mlx);
+	ft_printf("hi");
 	free_map_params(&params);
 	return (0);
 }
