@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:33:29 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/22 12:36:21 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/22 13:20:40 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	load_texture(char *line, mlx_texture_t **texture)
 	*texture = mlx_load_png(line);
 }
 
-static int	handle_params(char *line, t_params *params)
+int	handle_params(char *line, t_params *params)
 {
 	if (ft_strncmp("NO ", (const char *)line, 3) == 0)
 	{
@@ -78,6 +78,7 @@ void	are_params_valid(int fd, t_params *params)
 		param_count += handle_params(line, params);
 		free(line);
 		line = NULL;
-		line = get_next_line(fd);
+		if (param_count != 6)
+			line = get_next_line(fd);
 	}
 }

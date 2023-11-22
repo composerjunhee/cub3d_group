@@ -6,11 +6,65 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/22 12:30:31 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/22 16:04:37 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	valid_char_check(char *map_line)
+{
+	int	i;
+
+	i = 0;
+	while (map_line[i])
+	{
+		if (map_line[i] != '1' && map_line[i] != '0' \
+			&& map_line[i] != 'W' && map_line[i] != 'N' && \
+				map_line[i] != 'E' && map_line[i] != 'S')
+			return (0);
+	}
+	return (1);
+}
+
+static int	valid_char_num_check(char *map_line)
+{
+	int i;
+	int	num;
+
+	i = 0;
+	num = 0;
+	while (map_line[i])
+	{
+		if (map_line[i] == 'W' && map_line[i] == 'N' && \
+				map_line[i] == 'E' && map_line[i] == 'S')
+			num++;
+	}
+	if (num != 1)
+		return (0);
+	else
+		return (1);
+}
+
+int	map_validator(t_params *params)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (params->map[i])
+	{
+		if (!valid_char_check(params->map[i]))
+			error_handler(INVALID_CHAR);
+		i++;
+	}
+	return (0);
+}
+
+// Map has an only one spawn point.
+// valid characters (E, W, N, S, 0, 1)
+// Surrounded by 1
 
 void	get_map_params(int fd, t_params *params)
 {
@@ -19,6 +73,7 @@ void	get_map_params(int fd, t_params *params)
 	map_row_amount = 0;
 	are_params_valid(fd, params);
 	fill_map(params, fd);
+	map_validator(params);
 }
 
 void	fill_map(t_params *params, int fd)
@@ -39,6 +94,7 @@ void	fill_map(t_params *params, int fd)
 	}
 	params->map = ft_split(line, '\n');
 	free(line);
+	close(fd);
 }
 
 void	free_map_params(t_params *params)
