@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/21 10:39:10 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/22 12:39:25 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,16 @@ typedef struct s_params
 	char			*c_values;
 }					t_params;
 
+/* UTILITIES */
 void	skip_leading_whitespace(char *line);
 void	error_handler(int error_code);
+/* MAP HANDLING */
+void	get_map_params(int fd, t_params *params);
+void	fill_map(t_params *params, int fd);
+void	free_map_params(t_params *params);
+/* PARAMETER HANDLING */
+void	are_params_valid(int fd, t_params *params);
+int		handle_params(char *line, t_params *params);
+void	load_texture(char *line, mlx_texture_t **texture);
 
 #endif

@@ -15,7 +15,7 @@ AR			= ar
 ARFLAGS		= rcs
 
 SRC 		= \
-$S/main.c $S/error.c 
+$S/main.c $S/error.c $S/map.c  $S/param_utils.c 
 
 OBJ			= $(SRC:$S%=$O%.o)
 
