@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/21 16:57:52 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/22 10:44:29 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ int	main(int argc, char **argv)
 	t_params	params;
 	mlx_t		mlx;
 	int			fd;
-	int i = 0;
 
 	if (argc != 2)
 		error_handler(WRONG_INPUT);
@@ -163,10 +162,6 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		error_handler(FD_FAILURE);
 	get_map_params(fd, &params);
-	while (params.map[i])
-	{
-		ft_printf("%s\n", params.map[i++]);
-	}
 	free_map_params(&params);
 	return (0);
 }
