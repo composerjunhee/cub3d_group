@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/22 16:04:37 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/22 16:19:05 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	valid_char_check(char *map_line)
 			&& map_line[i] != 'W' && map_line[i] != 'N' && \
 				map_line[i] != 'E' && map_line[i] != 'S')
 			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -39,7 +40,9 @@ static int	valid_char_num_check(char *map_line)
 		if (map_line[i] == 'W' && map_line[i] == 'N' && \
 				map_line[i] == 'E' && map_line[i] == 'S')
 			num++;
+		i++;
 	}
+	ft_printf("%d\n", num);
 	if (num != 1)
 		return (0);
 	else
@@ -56,6 +59,8 @@ int	map_validator(t_params *params)
 	while (params->map[i])
 	{
 		if (!valid_char_check(params->map[i]))
+			error_handler(INVALID_CHAR);
+		if (!valid_char_num_check(params->map[i]))
 			error_handler(INVALID_CHAR);
 		i++;
 	}

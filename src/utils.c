@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/22 15:13:54 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/22 16:15:51 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	error_handler(int error_code)
 		ft_putstr_fd("Given path is not valid.\n", 2);
 	else if (error_code == GNL_FAILURE)
 		ft_putstr_fd("GetNextLine has failed.\n", 2);
+	else if (error_code == INVALID_CHAR)
+		ft_putstr_fd("Invalid char found.\n", 2);
 	else
 		ft_putstr_fd("Unknown1 error occurred.\n", 2);
 	exit(error_code);
