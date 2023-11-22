@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/22 10:48:49 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/22 10:49:07 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,8 @@ int	main(int argc, char **argv)
 	t_params			params;
 	mlx_t				*mlx;
 	int					fd;
-	int					i;
 	static mlx_image_t	image;
 
-	i = 0;
 	if (argc != 2)
 		error_handler(WRONG_INPUT);
 	init_params(&params, &mlx, &image);
