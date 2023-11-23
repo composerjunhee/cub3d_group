@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/22 15:13:38 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/23 10:41:50 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ enum e_codes
 	WRONG_PATH = -3,
 	GNL_FAILURE = -4,
 	INVALID_CHAR = -5,
+	PLAYER_AMOUNT_INCORRECT = -6,
 } code;
 typedef struct s_params
 {
-	int				x_pos;
-	int				y_pos;
+	int				player_amount;
 	int				map_start;
 	char			*map_path;
 	char			**map;

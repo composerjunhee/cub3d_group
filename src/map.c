@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/22 16:19:05 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/23 10:37:07 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,31 @@ static int	valid_char_check(char *map_line)
 	i = 0;
 	while (map_line[i])
 	{
-		if (map_line[i] != '1' && map_line[i] != '0' \
-			&& map_line[i] != 'W' && map_line[i] != 'N' && \
-				map_line[i] != 'E' && map_line[i] != 'S')
+		if (map_line[i] != '1' && map_line[i] != '0' && map_line[i] != 'W'
+			&& map_line[i] != 'N'
+			&& map_line[i] != 'E' && map_line[i] != 'S' && map_line[i] != ' '
+			&& map_line[i] != '\t' && map_line[i] != '\n')
+		{
 			return (0);
+		}
 		i++;
 	}
 	return (1);
 }
 
-static int	valid_char_num_check(char *map_line)
+static int	valid_char_num_check(t_params *params, char *map_line)
 {
-	int i;
-	int	num;
+	int	i;
 
 	i = 0;
-	num = 0;
 	while (map_line[i])
 	{
-		if (map_line[i] == 'W' && map_line[i] == 'N' && \
-				map_line[i] == 'E' && map_line[i] == 'S')
-			num++;
+		if (map_line[i] == 'W' || map_line[i] == 'N' ||
+			map_line[i] == 'E' || map_line[i] == 'S')
+			params->player_amount++;
 		i++;
 	}
-	ft_printf("%d\n", num);
-	if (num != 1)
+	if (params->player_amount > 1)
 		return (0);
 	else
 		return (1);
@@ -60,8 +60,8 @@ int	map_validator(t_params *params)
 	{
 		if (!valid_char_check(params->map[i]))
 			error_handler(INVALID_CHAR);
-		if (!valid_char_num_check(params->map[i]))
-			error_handler(INVALID_CHAR);
+		if (!valid_char_num_check(params, params->map[i]))
+			error_handler(PLAYER_AMOUNT_EXCEED);
 		i++;
 	}
 	return (0);

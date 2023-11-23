@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:33:29 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/22 13:20:40 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/23 10:23:30 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	handle_params(char *line, t_params *params)
 	}
 	return (0);
 }
-
 
 void	are_params_valid(int fd, t_params *params)
 {

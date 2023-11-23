@@ -6,10 +6,9 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/22 16:15:51 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/23 10:42:25 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 
@@ -37,6 +36,8 @@ void	error_handler(int error_code)
 		ft_putstr_fd("GetNextLine has failed.\n", 2);
 	else if (error_code == INVALID_CHAR)
 		ft_putstr_fd("Invalid char found.\n", 2);
+	else if (error_code == PLAYER_AMOUNT_INCORRECT)
+		ft_putstr_fd("Incorrect amount of player positions.\n", 2);
 	else
 		ft_putstr_fd("Unknown1 error occurred.\n", 2);
 	exit(error_code);
