@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/23 10:41:50 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/23 15:08:41 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ enum e_codes
 	GNL_FAILURE = -4,
 	INVALID_CHAR = -5,
 	PLAYER_AMOUNT_INCORRECT = -6,
+	NOT_ENOUGH_PARAMS = -7,
 } code;
 typedef struct s_params
 {
@@ -48,7 +49,8 @@ int		skip_leading_whitespace(char *line);
 void	error_handler(int error_code);
 /* MAP HANDLING */
 void	get_map_params(int fd, t_params *params);
-void	fill_map(t_params *params, int fd);
+void	fill_map_params(t_params *params, int fd);
+void	closed_map_check(t_params *params);
 void	free_map_params(t_params *params);
 /* PARAMETER HANDLING */
 void	are_params_valid(int fd, t_params *params);

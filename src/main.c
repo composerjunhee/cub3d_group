@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/22 13:24:09 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/23 10:51:01 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int argc, char **argv)
 	mlx_t				*mlx;
 	int					fd;
 	static mlx_image_t	image;
-	int i = 0;
 
 	if (argc != 2)
 		error_handler(WRONG_INPUT);
@@ -47,11 +46,6 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		error_handler(FD_FAILURE);
 	get_map_params(fd, &params);
-	while (params.map[i])
-	{
-		ft_printf("%s\n", params.map[i]);
-		i++;
-	}
 	mlx_loop(mlx);
 	free_map_params(&params);
 	return (0);

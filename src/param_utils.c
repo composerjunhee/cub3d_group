@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:33:29 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/23 10:23:30 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/23 15:08:42 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,34 @@ void	are_params_valid(int fd, t_params *params)
 		if (param_count != 6)
 			line = get_next_line(fd);
 	}
+}
+
+void	free_map_params(t_params *params)
+{
+	int	i;
+
+	i = 0;
+	if (params->c_values)
+		free(params->c_values);
+	if (params->f_values)
+		free(params->f_values);
+	if (params->ea_texture)
+		mlx_delete_texture(params->ea_texture);
+	if (params->no_texture)
+		mlx_delete_texture(params->no_texture);
+	if (params->we_texture)
+		mlx_delete_texture(params->we_texture);
+	if (params->so_texture)
+		mlx_delete_texture(params->so_texture);
+	if (params->map)
+	{
+		if (params->map[i])
+		{
+			while (params->map[i])
+				free(params->map[i++]);
+		}
+		free(params->map);
+	}
+	if (params->map_path)
+		free(params->map_path);
 }
