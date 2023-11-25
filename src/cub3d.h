@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/23 15:08:41 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/24 10:45:33 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ enum e_codes
 	INVALID_CHAR = -5,
 	PLAYER_AMOUNT_INCORRECT = -6,
 	NOT_ENOUGH_PARAMS = -7,
+	MAP_NOT_CLOSED = -8,
 } code;
 typedef struct s_params
 {
