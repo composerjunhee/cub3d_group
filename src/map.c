@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/24 11:16:44 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/27 10:24:49 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static int	valid_char_num_check(t_params *params, char *map_line)
 int	map_validator(t_params *params)
 {
 	int	i;
-
 
 	i = 0;
 	while (params->map[i])

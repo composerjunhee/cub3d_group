@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/24 10:45:33 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/27 14:15:37 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_params
 
 /* UTILITIES */
 int		skip_leading_whitespace(char *line);
+int		is_player(char c);
+int		is_edge(char *row, int pos);
 void	error_handler(int error_code);
 /* MAP HANDLING */
 void	get_map_params(int fd, t_params *params);
