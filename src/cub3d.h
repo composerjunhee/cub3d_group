@@ -6,7 +6,7 @@
 /*   By: junheeki <junheeki@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/28 14:17:09 by junheeki         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:47:45 by junheeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_params
 	int				map_start;
 	char			*map_path;
 	char			**map;
+	int				x;
+	int				y;
 	mlx_texture_t	*no_texture;
 	mlx_texture_t	*ea_texture;
 	mlx_texture_t	*we_texture;
@@ -62,5 +64,10 @@ int					handle_params(char *line, t_params *params);
 void				load_texture(char *line, mlx_texture_t **texture);
 int					map_validator(t_params *params);
 void				my_keyhook(mlx_key_data_t keydata, void *param);
+/* CONTROLLER */
+void				move_w(t_params *params);
+void				move_a(t_params *params);
+void				move_s(t_params *params);
+void				move_d(t_params *params);
 
 #endif
