@@ -6,16 +6,21 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:12:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/27 14:14:28 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/28 12:26:43 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_edge(char *row, int pos)
+int	is_out_of_bounds(char *row, int pos)
 {
 	int	len;
 
+	if (!row)
+		error_handler(MAP_NOT_CLOSED);
+	if (row[pos] == ' ' || row[pos] == '\n' || \
+		row[pos] == '\t' || row[pos] == '\0')
+		error_handler(MAP_NOT_CLOSED);
 	len = ft_strlen(row);
 
 	if (pos > len || pos < 0)
@@ -33,7 +38,7 @@ int	is_player(char c)
 	while (i < 4)
 	{
 		if (c == arr[i])
-			return (i);
+			return (arr[i]);
 		i++;
 	}
 	return (0);

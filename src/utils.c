@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/27 14:18:34 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/27 16:01:10 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,16 @@ int	skip_leading_whitespace(char *line)
 	return (1);
 }
 
-static void	check_surroundings(char *row, int j)
+static void	check_surroundings(t_params *params, int i, int j)
 {
-	
+	if (is_out_of_bounds(params->map[i], j + 1))
+		error_handler(MAP_NOT_CLOSED);
+	if (is_out_of_bounds(params->map[i], j - 1))
+		error_handler(MAP_NOT_CLOSED);
+	if (is_out_of_bounds(params->map[i + 1], j))
+		error_handler(MAP_NOT_CLOSED);
+	if (is_out_of_bounds(params->map[i - 1], j))
+		error_handler(MAP_NOT_CLOSED);
 }
 
 void	closed_map_check(t_params *params)
@@ -41,7 +48,7 @@ void	closed_map_check(t_params *params)
 		while (params->map[i][j])
 		{
 			if (params->map[i][j] == '0' || is_player(params->map[i][j]))
-				check_surroundings(params->map[i], j);
+				check_surroundings(params, i, j);
 			j++;
 		}
 		i++;
