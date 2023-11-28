@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: junheeki <junheeki@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/28 14:04:32 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/28 14:17:09 by junheeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <MLX42/MLX42.h>
 # include <fcntl.h>
 
-enum e_codes
+enum				e_codes
 {
 	WRONG_INPUT = -1,
 	FD_FAILURE = -2,
@@ -30,7 +30,8 @@ enum e_codes
 	PLAYER_AMOUNT_INCORRECT = -6,
 	NOT_ENOUGH_PARAMS = -7,
 	MAP_NOT_CLOSED = -8,
-} code;
+}					code;
+
 typedef struct s_params
 {
 	int				player_amount;
@@ -46,20 +47,20 @@ typedef struct s_params
 }					t_params;
 
 /* UTILITIES */
-int		skip_leading_whitespace(char *line);
-int		is_player(char c);
-int		is_out_of_bounds(char *row, int pos);
-void	error_handler(int error_code);
+int					skip_leading_whitespace(char *line);
+int					is_player(char c);
+int					is_out_of_bounds(char *row, int pos);
+void				error_handler(int error_code);
 /* MAP HANDLING */
-void	get_map_params(int fd, t_params *params);
-void	fill_map_params(t_params *params, int fd);
-void	closed_map_check(t_params *params);
-void	free_map_params(t_params *params);
+void				get_map_params(int fd, t_params *params);
+void				fill_map_params(t_params *params, int fd);
+void				closed_map_check(t_params *params);
+void				free_map_params(t_params *params);
 /* PARAMETER HANDLING */
-void	are_params_valid(int fd, t_params *params);
-int		handle_params(char *line, t_params *params);
-void	load_texture(char *line, mlx_texture_t **texture);
-int		map_validator(t_params *params);
-void	my_keyhook(mlx_key_data_t keydata, void* param);
+void				are_params_valid(int fd, t_params *params);
+int					handle_params(char *line, t_params *params);
+void				load_texture(char *line, mlx_texture_t **texture);
+int					map_validator(t_params *params);
+void				my_keyhook(mlx_key_data_t keydata, void *param);
 
 #endif
