@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/23 10:51:01 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/28 14:04:56 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ static void	init_params(t_params *params, mlx_t **mlx, mlx_image_t *image)
 	ft_bzero(params, sizeof(*params));
 }
 
+void	my_keyhook(mlx_key_data_t keydata, void* param)
+{
+	(void) param;
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+		ft_printf("FORWARD MARCH\n");
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		ft_printf("EXIT\n");
+}
+
 int	main(int argc, char **argv)
 {
 	t_params			params;
@@ -46,6 +55,7 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		error_handler(FD_FAILURE);
 	get_map_params(fd, &params);
+	mlx_key_hook(mlx, &my_keyhook, &params);
 	mlx_loop(mlx);
 	free_map_params(&params);
 	return (0);

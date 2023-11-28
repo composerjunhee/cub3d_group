@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/27 15:51:40 by rrask            ###   ########.fr       */
+/*   Updated: 2023/11/28 14:04:32 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void	are_params_valid(int fd, t_params *params);
 int		handle_params(char *line, t_params *params);
 void	load_texture(char *line, mlx_texture_t **texture);
 int		map_validator(t_params *params);
+void	my_keyhook(mlx_key_data_t keydata, void* param);
 
 #endif
