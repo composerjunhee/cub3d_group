@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/27 16:01:10 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/04 10:51:39 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	error_handler(int error_code)
 		ft_putstr_fd("The parameter amount in the map file is incorrect.\n", 2);
 	else if (error_code == MAP_NOT_CLOSED)
 		ft_putstr_fd("The map is not closed.\n", 2);
+	else if (error_code == ALLOCATION_ERROR)
+		ft_putstr_fd("Allocation failed.\n", 2);
 	else
 		ft_putstr_fd("Unknown1 error occurred.\n", 2);
 	exit(error_code);

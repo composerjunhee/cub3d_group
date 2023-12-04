@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/29 13:49:16 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/04 10:53:57 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,27 @@ enum				e_codes
 	PLAYER_AMOUNT_INCORRECT = -6,
 	NOT_ENOUGH_PARAMS = -7,
 	MAP_NOT_CLOSED = -8,
+	ALLOCATION_ERROR = -9,
 }					code;
+
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	camera_x;
+}				t_player;
 
 typedef struct s_params
 {
 	mlx_t			*mlx;
 	mlx_image_t		*image;
+	t_player		*player;
 	int				player_amount;
 	int				map_start;
 	char			*map_path;
@@ -49,6 +64,7 @@ typedef struct s_params
 	char			*f_values;
 	char			*c_values;
 }					t_params;
+
 
 /* UTILITIES */
 int					skip_leading_whitespace(char *line);
