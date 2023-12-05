@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/05 10:31:35 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/05 17:29:59 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 # define MAP_PATH "../map/basic.cub"
 # define SCREEN_WIDTH 960
 # define SCREEN_HEIGHT 540
+# define MASSIVE_NUM 1e30
+# define TEXTURE_H 64
+# define TEXTURE_W 64
 
 # include "libft.h"
 # include <MLX42/MLX42.h>
@@ -42,9 +45,25 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	double	camera_x;
+	double	move_speed;
+	double	rot_speed;
+	int		draw_start;
+	int		draw_end;
+	int		text_x;
+	int		text_y;
 }				t_player;
 
 typedef struct s_params
@@ -56,16 +75,17 @@ typedef struct s_params
 	int				map_start;
 	char			*map_path;
 	char			**map;
-	int				x;
-	int				y;
+	int				map_x;
+	int				map_y;
 	mlx_texture_t	*no_texture;
 	mlx_texture_t	*ea_texture;
 	mlx_texture_t	*we_texture;
 	mlx_texture_t	*so_texture;
+	mlx_texture_t	*text_to_draw;
 	char			*f_values;
 	char			*c_values;
+	uint32_t		wall_c;
 }					t_params;
-
 
 /* UTILITIES */
 int					skip_leading_whitespace(char *line);
@@ -84,7 +104,12 @@ void				load_texture(char *line, mlx_texture_t **texture);
 int					map_validator(t_params *params);
 void				my_keyhook(mlx_key_data_t keydata, void *param);
 /* RENDERING */
-void				raycasting(t_player *player);
+void				raycasting(t_player *player, t_params *params);
+void				check_for_hit(t_params *params, t_player *player);
+void				fish_eye_correction(t_player *player);
+void				ray_calc(t_player *player, int i);
+uint32_t			wall_color(t_params *params, t_player *player);
+
 /* CONTROLLER */
 void				move_w(t_params *params);
 void				move_a(t_params *params);

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/05 10:32:59 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/05 16:45:39 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	main(int argc, char **argv)
 		error_handler(FD_FAILURE);
 	get_map_params(fd, &params);
 	mlx_key_hook(params.mlx, &my_keyhook, &params);
+	raycasting(params.player, &params);
 	mlx_loop(params.mlx);
 	free_map_params(&params);
 	return (0);
