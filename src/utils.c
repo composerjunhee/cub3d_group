@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/04 10:51:39 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/05 10:29:39 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,14 @@ void	closed_map_check(t_params *params)
 		while (params->map[i][j])
 		{
 			if (params->map[i][j] == '0' || is_player(params->map[i][j]))
+			{
+				if (is_player(params->map[i][j]))
+				{
+					params->player->pos_x = i;
+					params->player->pos_y = j;
+				}
 				check_surroundings(params, i, j);
+			}
 			j++;
 		}
 		i++;

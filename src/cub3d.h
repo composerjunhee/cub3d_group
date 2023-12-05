@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/04 10:53:57 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/05 10:31:35 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "libft.h"
 # include <MLX42/MLX42.h>
 # include <fcntl.h>
+# include <math.h>
 
 enum				e_codes
 {
@@ -35,8 +36,8 @@ enum				e_codes
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
+	int		pos_x;
+	int		pos_y;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
@@ -82,6 +83,8 @@ int					handle_params(char *line, t_params *params);
 void				load_texture(char *line, mlx_texture_t **texture);
 int					map_validator(t_params *params);
 void				my_keyhook(mlx_key_data_t keydata, void *param);
+/* RENDERING */
+void				raycasting(t_player *player);
 /* CONTROLLER */
 void				move_w(t_params *params);
 void				move_a(t_params *params);
