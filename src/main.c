@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/05 16:45:39 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/07 16:32:25 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_params(t_params *params)
 	if (!params->mlx)
 		error_handler(FD_FAILURE);
 	params->player = player;
-	params->image = mlx_new_image(params->mlx, 128, 128);
+	params->image = mlx_new_image(params->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!params->image)
 	{
 		mlx_close_window(params->mlx);
@@ -69,6 +69,34 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	}
 }
 
+static	void	draw_floor_ceiling(t_params *param)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+
+	while (y < SCREEN_HEIGHT)
+	{
+		x = 0;
+		while (x < SCREEN_WIDTH)
+		{
+			if (y < SCREEN_HEIGHT / 2)
+				mlx_put_pixel(param->image, x, y, param->c_values);
+			else
+				mlx_put_pixel(param->image, x, y, param->f_values);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	render(t_params *param)
+{
+	draw_floor_ceiling(param);
+	// raycasting(params.player, &params);
+}
+
 int	main(int argc, char **argv)
 {
 	t_params			params;
@@ -83,7 +111,7 @@ int	main(int argc, char **argv)
 		error_handler(FD_FAILURE);
 	get_map_params(fd, &params);
 	mlx_key_hook(params.mlx, &my_keyhook, &params);
-	raycasting(params.player, &params);
+	mlx_loop_hook(params.mlx, (void *)render, &params);
 	mlx_loop(params.mlx);
 	free_map_params(&params);
 	return (0);

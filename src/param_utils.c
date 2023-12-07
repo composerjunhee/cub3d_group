@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:33:29 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/07 12:40:24 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/07 16:29:56 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	convert_string_to_color(char *line)
 	char	*tmp;
 	int		result;
 
+	while (!ft_isdigit(*line))
+		line++;
 	tmp = ft_strtrim(line, "\t");
 	result = 0;
 	if (!tmp)
@@ -39,9 +41,9 @@ static int	convert_string_to_color(char *line)
 	return (result);
 }
 
-static int	get_rgba(int r, int g, int b, int a)
+static int	get_rgba(int r, int g, int b)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
 static int	get_color(char *line)
@@ -63,13 +65,9 @@ static int	get_color(char *line)
 		rgb[i] = convert_string_to_color(tmp[i]);
 		i++;
 	}
-	i = 0;
-	while (rgb[i])
-	{
-		ft_printf("%d\n", rgb[i]);
-		i++;
-	}
-	res = get_rgba(rgb[0], rgb[1], rgb[2], 100);
+	if (i < 3)
+		error_handler(WRONG_INPUT);
+	res = get_rgba(rgb[0], rgb[1], rgb[2]);
 	//free tmp as a 2d array
 	return (res);
 }
