@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/05 17:29:59 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/07 12:18:15 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ enum				e_codes
 	NOT_ENOUGH_PARAMS = -7,
 	MAP_NOT_CLOSED = -8,
 	ALLOCATION_ERROR = -9,
+	INVALID_COLOR = -10,
 }					code;
 
 typedef struct s_player
@@ -82,8 +83,8 @@ typedef struct s_params
 	mlx_texture_t	*we_texture;
 	mlx_texture_t	*so_texture;
 	mlx_texture_t	*text_to_draw;
-	char			*f_values;
-	char			*c_values;
+	int				f_values;
+	int				c_values;
 	uint32_t		wall_c;
 }					t_params;
 

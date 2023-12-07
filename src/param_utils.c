@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:33:29 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/23 15:08:42 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/07 12:40:24 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,59 @@ void	load_texture(char *line, mlx_texture_t **texture)
 	len = ft_strlen(line);
 	line[len - 1] = '\0';
 	*texture = mlx_load_png(line);
+}
+
+static int	convert_string_to_color(char *line)
+{
+	char	*tmp;
+	int		result;
+
+	tmp = ft_strtrim(line, "\t");
+	result = 0;
+	if (!tmp)
+		error_handler(ALLOCATION_ERROR);
+	if (!ft_isdigit(*tmp))
+		error_handler(INVALID_COLOR);
+	result = ft_atoi(line);
+	if (result < 0 || result > 255)
+		error_handler(INVALID_COLOR);
+	free(tmp);
+	return (result);
+}
+
+static int	get_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+static int	get_color(char *line)
+{
+	char	**tmp;
+	int		rgb[3];
+	int		i;
+	int		res;
+
+	i = 0;
+	res = 0;
+	tmp = ft_split(line, ',');
+	if (!tmp)
+		error_handler(ALLOCATION_ERROR);
+	while (tmp[i])
+	{
+		if (i >= 3)
+			error_handler(WRONG_INPUT);
+		rgb[i] = convert_string_to_color(tmp[i]);
+		i++;
+	}
+	i = 0;
+	while (rgb[i])
+	{
+		ft_printf("%d\n", rgb[i]);
+		i++;
+	}
+	res = get_rgba(rgb[0], rgb[1], rgb[2], 100);
+	//free tmp as a 2d array
+	return (res);
 }
 
 int	handle_params(char *line, t_params *params)
@@ -45,12 +98,12 @@ int	handle_params(char *line, t_params *params)
 	}
 	else if (ft_strncmp("F ", (const char *)line, 2) == 0)
 	{
-		params->f_values = ft_strdup(line);
+		params->f_values = get_color(line);
 		return (1);
 	}
 	else if (ft_strncmp("C ", (const char *)line, 2) == 0)
 	{
-		params->c_values = ft_strdup(line);
+		params->c_values = get_color(line);
 		return (1);
 	}
 	return (0);
@@ -87,10 +140,6 @@ void	free_map_params(t_params *params)
 	int	i;
 
 	i = 0;
-	if (params->c_values)
-		free(params->c_values);
-	if (params->f_values)
-		free(params->f_values);
 	if (params->ea_texture)
 		mlx_delete_texture(params->ea_texture);
 	if (params->no_texture)

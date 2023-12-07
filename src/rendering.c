@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:11:27 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/05 17:30:55 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/06 14:45:02 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ void	check_for_hit(t_params *params, t_player *player)
 	else
 		player->delta_dist_y = fabs(1 / player->ray_dir_y);
 	player->hit = 0;
-	raycast_calc(player, params);
 }
 
 void	raycasting(t_player *player, t_params *params)
@@ -151,6 +150,7 @@ void	raycasting(t_player *player, t_params *params)
 	i = 0;
 	while (i < SCREEN_WIDTH)
 	{
+		raycast_calc(player, params);
 		ray_calc(player, i);
 		check_for_hit(params, player);
 		dda_algo(player, params);

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/05 10:29:39 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/07 12:18:47 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	error_handler(int error_code)
 		ft_putstr_fd("The map is not closed.\n", 2);
 	else if (error_code == ALLOCATION_ERROR)
 		ft_putstr_fd("Allocation failed.\n", 2);
+	else if (error_code == INVALID_COLOR)
+		ft_putstr_fd("Color is not within the 255 range.\n", 2);
 	else
 		ft_putstr_fd("Unknown1 error occurred.\n", 2);
 	exit(error_code);
