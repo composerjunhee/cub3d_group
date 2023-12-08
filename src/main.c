@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/07 16:32:25 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/08 10:38:30 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_params(t_params *params)
 		error_handler(ALLOCATION_ERROR);
 	ft_bzero(params, sizeof(*params));
 	ft_bzero(player, sizeof(t_player));
-	params->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Vi dy a gem", true);
+	params->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Vi dy a gem", true); 
 	if (!params->mlx)
 		error_handler(FD_FAILURE);
 	params->player = player;
@@ -66,28 +66,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	{
 		free_map_params(param);
 		exit(0);
-	}
-}
-
-static	void	draw_floor_ceiling(t_params *param)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-
-	while (y < SCREEN_HEIGHT)
-	{
-		x = 0;
-		while (x < SCREEN_WIDTH)
-		{
-			if (y < SCREEN_HEIGHT / 2)
-				mlx_put_pixel(param->image, x, y, param->c_values);
-			else
-				mlx_put_pixel(param->image, x, y, param->f_values);
-			x++;
-		}
-		y++;
 	}
 }
 

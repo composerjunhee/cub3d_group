@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/07 12:18:15 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/08 10:38:25 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int					skip_leading_whitespace(char *line);
 int					is_player(char c);
 int					is_out_of_bounds(char *row, int pos);
 void				error_handler(int error_code);
+int					get_color(char *line);
 /* MAP HANDLING */
 void				get_map_params(int fd, t_params *params);
 void				fill_map_params(t_params *params, int fd);
@@ -110,6 +111,8 @@ void				check_for_hit(t_params *params, t_player *player);
 void				fish_eye_correction(t_player *player);
 void				ray_calc(t_player *player, int i);
 uint32_t			wall_color(t_params *params, t_player *player);
+void				render(t_params *param);
+void				draw_floor_ceiling(t_params *param);
 
 /* CONTROLLER */
 void				move_w(t_params *params);

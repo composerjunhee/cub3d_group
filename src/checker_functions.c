@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:12:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/11/28 12:26:43 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/08 10:31:45 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,30 @@ int	is_player(char c)
 		i++;
 	}
 	return (0);
+}
+
+void	are_params_valid(int fd, t_params *params)
+{
+	char	*line;
+	int		param_count;
+
+	param_count = 0;
+	line = get_next_line(fd);
+	if (!line)
+		error_handler(GNL_FAILURE);
+	while (line)
+	{
+		if (!line)
+			error_handler(GNL_FAILURE);
+		if (param_count == 6)
+		{
+			free(line);
+			return ;
+		}
+		param_count += handle_params(line, params);
+		free(line);
+		line = NULL;
+		if (param_count != 6)
+			line = get_next_line(fd);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/07 12:18:47 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/08 10:37:35 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	error_handler(int error_code)
 	else if (error_code == ALLOCATION_ERROR)
 		ft_putstr_fd("Allocation failed.\n", 2);
 	else if (error_code == INVALID_COLOR)
-		ft_putstr_fd("Color is not within the 255 range.\n", 2);
+		ft_putstr_fd("Color is not within the RGB range.\n", 2);
 	else
 		ft_putstr_fd("Unknown1 error occurred.\n", 2);
 	exit(error_code);
