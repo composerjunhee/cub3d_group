@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/08 10:38:30 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/08 16:29:02 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 
 void	render(t_params *param)
 {
-	draw_floor_ceiling(param);
-	// raycasting(params.player, &params);
+	raycasting(param->player, param);
 }
 
 int	main(int argc, char **argv)
@@ -88,6 +87,7 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		error_handler(FD_FAILURE);
 	get_map_params(fd, &params);
+	draw_floor_ceiling(&params);
 	mlx_key_hook(params.mlx, &my_keyhook, &params);
 	mlx_loop_hook(params.mlx, (void *)render, &params);
 	mlx_loop(params.mlx);
