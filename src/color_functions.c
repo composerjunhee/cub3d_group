@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:30:01 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/08 10:38:36 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:31:14 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_floor_ceiling(t_params *param)
 	}
 }
 
-static int	get_rgba(int r, int g, int b)
+int	get_rgba(int r, int g, int b)
 {
 	return (r << 24 | g << 16 | b << 8 | 255);
 }

@@ -6,36 +6,37 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:11:27 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/11 10:16:17 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/11 17:21:05 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 static void	raycast_calc(t_player *player, t_params *params)
 {
 	if (player->ray_dir_x < 0)
 	{
 		player->step_x = -1;
-		player->side_dist_x = (player->pos_x - params->map_x)
+		player->side_dist_x = (player->pos_x - (double)params->map_x)
 			* player->delta_dist_x;
 	}
 	else
 	{
 		player->step_x = 1;
-		player->side_dist_x = (params->map_x + 1.0 - player->pos_x)
+		player->side_dist_x = ((double)params->map_x + 1.0 - player->pos_x)
 			* player->delta_dist_x;
 	}
 	if (player->ray_dir_y < 0)
 	{
 		player->step_y = -1;
-		player->side_dist_y = (player->pos_y - params->map_y)
+		player->side_dist_y = (player->pos_y - (double)params->map_y)
 			* player->delta_dist_y;
 	}
 	else
 	{
 		player->step_y = 1;
-		player->side_dist_y = (params->map_y + 1.0 - player->pos_y)
+		player->side_dist_y = ((double)params->map_y + 1.0 - player->pos_y)
 			* player->delta_dist_y;
 	}
 }
@@ -65,27 +66,27 @@ static void	dda_algo(t_player *player, t_params *params)
 			player->side = 1;
 		}
 		//Check if ray has hit a wall
-		if (params->map[params->map_x][params->map_y] > 0)
+		if (params->map[params->map_y][params->map_x] == '1')
 			player->hit = 1;
 	}
 }
 
-uint32_t	wall_color(t_params *params, t_player *player)
-{
-	uint32_t	color;
-	int			x;
-	int			y;
-	int			index;
+// uint32_t	wall_color(t_params *params, t_player *player)
+// {
+// 	uint32_t	color;
+// 	int			x;
+// 	int			y;
+// 	int			index;
 
-	y = player->text_y;
-	x = player->text_x;
-	index = y * (int)params->text_to_draw->height
-		* (int)params->text_to_draw->bytes_per_pixel + x
-		* (int)params->text_to_draw->bytes_per_pixel;
-	color = params->text_to_draw->pixels[index] << 24 | params->text_to_draw->pixels[index
-		+ 1] << 16 | params->text_to_draw->pixels[index + 2] << 8 | 255;
-	return (color);
-}
+// 	y = player->text_y;
+// 	x = player->text_x;
+// 	index = y * (int)params->no_texture->height
+// 		* (int)params->no_texture->bytes_per_pixel + x
+// 		* (int)params->no_texture->bytes_per_pixel;
+// 	color = params->no_texture->pixels[index] << 24 | params->no_texture->pixels[index
+// 		+ 1] << 16 | params->no_texture->pixels[index + 2] << 8 | 255;
+// 	return (color);
+// }
 
 static void	vertical_draw(int x, t_player *player, t_params *params)
 {
@@ -103,13 +104,13 @@ static void	vertical_draw(int x, t_player *player, t_params *params)
 		texture_pos += step;
 		if (player->side == 1)
 			params->wall_c = (params->wall_c >> 1) & 8355711;
-		params->wall_c = wall_color(params, player);
+		params->wall_c = get_rgba(145, 120, 70);
 		mlx_put_pixel(params->image, x, y, params->wall_c);
 		y++;
 	}
 }
 
-void	fish_eye_correction(t_player *player)
+void	calculate_walls(t_player *player)
 {
 	player->draw_start = 0;
 	player->draw_end = 0;
@@ -129,8 +130,8 @@ void	fish_eye_correction(t_player *player)
 
 void	check_for_hit(t_params *params, t_player *player)
 {
-	params->map_x = player->pos_x;
-	params->map_y = player->pos_y;
+	params->map_x = (int)player->pos_x;
+	params->map_y = (int)player->pos_y;
 	if (player->delta_dist_x == 0)
 		player->delta_dist_x = MASSIVE_NUM;
 	else
@@ -147,13 +148,14 @@ void	raycasting(t_player *player, t_params *params)
 	int	i;
 
 	i = 0;
+
 	while (i < SCREEN_WIDTH)
 	{
 		ray_calc(player, i);
 		check_for_hit(params, player);
 		raycast_calc(player, params);
 		dda_algo(player, params);
-		fish_eye_correction(player);
+		calculate_walls(player);
 		vertical_draw(i, player, params);
 		i++;
 	}

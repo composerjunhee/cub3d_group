@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 13:30:09 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/11 10:31:03 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:13:30 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_printf(const char *s, ...)
 		if (s[i] == '%')
 		{
 			i++;
-			pr_len += format_handler(args, &s[i]);
+			pr_len += format_handler(&args, &s[i]);
 			i++;
 		}
 		else if (s[i])

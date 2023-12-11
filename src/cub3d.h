@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/11 13:00:46 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:55:20 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ enum				e_codes
 
 typedef struct s_player
 {
-	int		pos_x;
-	int		pos_y;
+	double	pos_x;
+	double	pos_y;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
@@ -109,11 +109,12 @@ void				my_keyhook(mlx_key_data_t keydata, void *param);
 /* RENDERING */
 void				raycasting(t_player *player, t_params *params);
 void				check_for_hit(t_params *params, t_player *player);
-void				fish_eye_correction(t_player *player);
+void				calculate_walls(t_player *player);
 void				ray_calc(t_player *player, int i);
 uint32_t			wall_color(t_params *params, t_player *player);
 void				render(t_params *param);
 void				draw_floor_ceiling(t_params *param);
+int					get_rgba(int r, int g, int b);
 
 /* CONTROLLER */
 void				move_w(t_params *params);

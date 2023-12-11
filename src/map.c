@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/11 13:01:57 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/11 17:22:24 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static int	valid_char_num_check(t_params *params, char *map_line, int y)
 			|| map_line[i] == 'S')
 		{
 			get_orientation(map_line[i], params);
-			params->player->pos_x = i;
-			params->player->pos_y = y;
+			params->player->pos_x = (double)i + 0.3;
+			params->player->pos_y = (double)y + 0.3;
 			params->player_amount++;
 		}
 		i++;
