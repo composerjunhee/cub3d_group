@@ -6,11 +6,12 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/08 16:50:32 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/11 09:58:59 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "stdio.h"
 
 static int	valid_char_check(char *map_line)
 {
@@ -31,7 +32,7 @@ static int	valid_char_check(char *map_line)
 	return (1);
 }
 
-static int	valid_char_num_check(t_params *params, char *map_line, int x)
+static int	valid_char_num_check(t_params *params, char *map_line, int y)
 {
 	int	i;
 
@@ -40,7 +41,11 @@ static int	valid_char_num_check(t_params *params, char *map_line, int x)
 	{
 		if (map_line[i] == 'W' || map_line[i] == 'N' || map_line[i] == 'E'
 			|| map_line[i] == 'S')
+		{
+			params->player->pos_x = i;
+			params->player->pos_y = y;
 			params->player_amount++;
+		}
 		i++;
 	}
 	if (params->player_amount > 1)
@@ -56,7 +61,6 @@ int	map_validator(t_params *params)
 	i = 0;
 	while (params->map[i])
 	{
-		// ft_printf("%s\n", params->map[i]);
 		if (!valid_char_check(params->map[i]))
 			error_handler(INVALID_CHAR);
 		if (valid_char_num_check(params, params->map[i], i) == 0)
