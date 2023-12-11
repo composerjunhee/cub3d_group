@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:11:27 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/08 16:29:42 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/11 10:16:17 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,3 +158,10 @@ void	raycasting(t_player *player, t_params *params)
 		i++;
 	}
 }
+
+
+/*
+To do list
+
+Give the player a direction based on the character.
+*/

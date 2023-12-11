@@ -6,11 +6,12 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/08 16:29:02 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/11 11:03:32 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 static void	init_params(t_params *params)
 {
@@ -19,9 +20,9 @@ static void	init_params(t_params *params)
 	player = malloc(sizeof(t_player));
 	if (!player)
 		error_handler(ALLOCATION_ERROR);
-	ft_bzero(params, sizeof(*params));
+	ft_bzero(params, sizeof(t_params));
 	ft_bzero(player, sizeof(t_player));
-	params->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Vi dy a gem", true); 
+	params->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Vi dy a gem", true);
 	if (!params->mlx)
 		error_handler(FD_FAILURE);
 	params->player = player;
@@ -40,7 +41,6 @@ static void	init_params(t_params *params)
 
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
-
 	// mlx_is_key_down()
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 	{

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/08 10:46:20 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/11 13:00:46 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define MASSIVE_NUM 1e30
 # define TEXTURE_H 64
 # define TEXTURE_W 64
-# define FOV 66
+# define FOV 0.66
 
 # include "libft.h"
 # include <MLX42/MLX42.h>
