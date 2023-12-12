@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:30:01 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 09:40:47 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/12 15:19:17 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	get_color(char *line)
 	if (i < 3)
 		error_handler(WRONG_INPUT);
 	res = get_rgba(rgb[0], rgb[1], rgb[2]);
-	//free tmp as a 2d array
+	while (*tmp)
+		free(*tmp++);
 	return (res);
 }
