@@ -6,12 +6,46 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:11:27 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 14:52:13 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/12 18:10:21 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
+
+void	select_texture(t_params *params)
+{
+	if (params->player->side == 0)
+	{
+		if (params->map_x > params->player->pos_x)
+			params->text_to_draw = params->ea_texture;
+		else
+			params->text_to_draw = params->no_texture;
+	}
+	else if (params->player->side == 1)
+	{
+		if (params->map_y > params->player->pos_y)
+			params->text_to_draw = params->so_texture;
+		else
+			params->text_to_draw = params->we_texture;
+	}
+}
+
+void	calculate_texture(t_params *params)
+{
+	if (params->player->side == 0)
+		params->wall_x = params->player->pos_y
+			+ params->player->perp_wall_dist * params->player->ray_dir_y;
+	else
+		params->wall_x = params->player->pos_x
+			+ params->player->perp_wall_dist * params->player->ray_dir_x;
+	params->wall_x -= floor(params->wall_x);
+	params->player->text_x = (int)(params->wall_x * (double)TEXTURE_W);
+	if (params->player->side == 0 & params->player->ray_dir_x > 0)
+		params->player->text_x = TEXTURE_W - params->player->text_x - 1;
+	if (params->player->side == 1 & params->player->ray_dir_x < 0)
+		params->player->text_x = TEXTURE_W - params->player->text_x - 1;
+}
 
 static void	raycast_calc(t_player *player, t_params *params)
 {
@@ -78,11 +112,12 @@ uint32_t	wall_color(t_params *params, t_player *player)
 
 	y = player->text_y;
 	x = player->text_x;
-	index = y * (int)params->ea_texture->height
-		* (int)params->ea_texture->bytes_per_pixel + x
-		* (int)params->ea_texture->bytes_per_pixel;
-	color = params->ea_texture->pixels[index] << 24 | params->ea_texture->pixels[index
-		+ 1] << 16 | params->ea_texture->pixels[index + 2] << 8 | 255;
+	index = y * (int)params->text_to_draw->height
+		* (int)params->text_to_draw->bytes_per_pixel + x
+		* (int)params->text_to_draw->bytes_per_pixel;
+	color = params->text_to_draw->pixels[index] << 24
+		| params->text_to_draw->pixels[index + 1]
+		<< 16 | params->text_to_draw->pixels[index + 2] << 8 | 255;
 	return (color);
 }
 
@@ -152,6 +187,8 @@ void	raycasting(t_player *player, t_params *params)
 		raycast_calc(player, params);
 		dda_algo(player, params);
 		calculate_walls(player);
+		select_texture(params);
+		calculate_texture(params);
 		vertical_draw(i, player, params);
 		i++;
 	}

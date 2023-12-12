@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 15:40:26 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/12 18:12:45 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,28 @@ static void	init_params(t_params *params)
 
 static void	set_player_vals(t_params *param)
 {
-	param->player->move_speed = 5.0 * param->mlx->delta_time;
+	param->player->move_speed = 4.0 * param->mlx->delta_time;
 	param->player->rot_speed = 3.0 * param->mlx->delta_time;
 }
 
-static void rotation(t_params *params, int direction)
+static void	rotation(t_params *params, int direction)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
 	old_dir_x = params->player->dir_x;
 	old_plane_x = params->player->plane_x;
-	params->player->dir_x = params->player->dir_x * cos(direction * params->player->rot_speed) - params->player->dir_y
+	params->player->dir_x = params->player->dir_x * cos(direction
+			* params->player->rot_speed) - params->player->dir_y * sin(direction
+			* params->player->rot_speed);
+	params->player->dir_y = old_dir_x * sin(direction
+			* params->player->rot_speed) + params->player->dir_y * cos(direction
+			* params->player->rot_speed);
+	params->player->plane_x = params->player->plane_x * cos(direction
+			* params->player->rot_speed) - params->player->plane_y
 		* sin(direction * params->player->rot_speed);
-	params->player->dir_y = old_dir_x * sin(direction * params->player->rot_speed) + params->player->dir_y
-		* cos(direction * params->player->rot_speed);
-	params->player->plane_x = params->player->plane_x * cos(direction * params->player->rot_speed)
-		- params->player->plane_y * sin(direction * params->player->rot_speed);
-	params->player->plane_y = old_plane_x * sin(direction * params->player->rot_speed) + params->player->plane_y
+	params->player->plane_y = old_plane_x * sin(direction
+			* params->player->rot_speed) + params->player->plane_y
 		* cos(direction * params->player->rot_speed);
 }
 
@@ -88,12 +92,11 @@ void	my_keyhook(t_params *param)
 
 void	render(t_params *param)
 {
-	ft_memset(param->image->pixels, 0, param->image->width * param->image->height
-		* sizeof(int32_t));
+	ft_memset(param->image->pixels, 0, param->image->width
+		* param->image->height * sizeof(int32_t));
 	draw_floor_ceiling(param);
 	raycasting(param->player, param);
 }
-
 
 static void	game_loop(t_params *params)
 {
@@ -104,8 +107,8 @@ static void	game_loop(t_params *params)
 
 int	main(int argc, char **argv)
 {
-	t_params			params;
-	int					fd;
+	t_params	params;
+	int			fd;
 
 	if (argc != 2)
 		error_handler(WRONG_INPUT);

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 11:00:06 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/12 18:12:51 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define SCREEN_WIDTH 960
 # define SCREEN_HEIGHT 540
 # define MASSIVE_NUM 1e30
-# define TEXTURE_H 64
-# define TEXTURE_W 64
+# define TEXTURE_H 128
+# define TEXTURE_W 128
 # define FOV 0.66
 
 # include "libft.h"
@@ -87,6 +87,7 @@ typedef struct s_params
 	int				f_values;
 	int				c_values;
 	uint32_t		wall_c;
+	double			wall_x;
 }					t_params;
 
 /* UTILITIES */
