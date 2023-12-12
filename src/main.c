@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 15:11:56 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/12 15:40:26 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,51 @@ static void	init_params(t_params *params)
 	}
 }
 
+static void	set_player_vals(t_params *param)
+{
+	param->player->move_speed = 5.0 * param->mlx->delta_time;
+	param->player->rot_speed = 3.0 * param->mlx->delta_time;
+}
+
+static void rotation(t_params *params, int direction)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = params->player->dir_x;
+	old_plane_x = params->player->plane_x;
+	params->player->dir_x = params->player->dir_x * cos(direction * params->player->rot_speed) - params->player->dir_y
+		* sin(direction * params->player->rot_speed);
+	params->player->dir_y = old_dir_x * sin(direction * params->player->rot_speed) + params->player->dir_y
+		* cos(direction * params->player->rot_speed);
+	params->player->plane_x = params->player->plane_x * cos(direction * params->player->rot_speed)
+		- params->player->plane_y * sin(direction * params->player->rot_speed);
+	params->player->plane_y = old_plane_x * sin(direction * params->player->rot_speed) + params->player->plane_y
+		* cos(direction * params->player->rot_speed);
+}
+
 void	my_keyhook(t_params *param)
 {
 	if (mlx_is_key_down(param->mlx, MLX_KEY_W))
-	{
 		move_w(param);
-	}
+	if (mlx_is_key_down(param->mlx, MLX_KEY_W))
+		move_w(param);
 	if (mlx_is_key_down(param->mlx, MLX_KEY_A))
-	{
 		move_a(param);
-	}
 	if (mlx_is_key_down(param->mlx, MLX_KEY_S))
-	{
 		move_s(param);
-	}
 	if (mlx_is_key_down(param->mlx, MLX_KEY_D))
-	{
 		move_d(param);
-	}
+	if (mlx_is_key_down(param->mlx, MLX_KEY_LEFT))
+		rotation(param, -1);
+	if (mlx_is_key_down(param->mlx, MLX_KEY_RIGHT))
+		rotation(param, 1);
 	if (mlx_is_key_down(param->mlx, MLX_KEY_ESCAPE))
 	{
 		free_map_params(param);
 		exit(0);
 	}
+	set_player_vals(param);
 }
 
 void	render(t_params *param)
@@ -70,7 +92,14 @@ void	render(t_params *param)
 		* sizeof(int32_t));
 	draw_floor_ceiling(param);
 	raycasting(param->player, param);
-	param->player->move_speed = 5.0 * param->mlx->delta_time;
+}
+
+
+static void	game_loop(t_params *params)
+{
+	mlx_loop_hook(params->mlx, (void *)render, params);
+	mlx_loop_hook(params->mlx, (void *)my_keyhook, params);
+	mlx_loop(params->mlx);
 }
 
 int	main(int argc, char **argv)
@@ -86,9 +115,7 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		error_handler(FD_FAILURE);
 	get_map_params(fd, &params);
-	mlx_loop_hook(params.mlx, (void *)render, &params);
-	mlx_loop_hook(params.mlx, (void *)my_keyhook, &params);
-	mlx_loop(params.mlx);
+	game_loop(&params);
 	free_map_params(&params);
 	return (0);
 }

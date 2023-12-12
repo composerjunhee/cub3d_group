@@ -6,12 +6,40 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 11:31:21 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/12 17:17:07 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "stdio.h"
+
+// static void	valid_map_space(char *line)
+// {	
+// 	// int num;
+// 	// int x;
+// 	// int y;
+
+// 	// x = 0;
+// 	// y = 0;
+// 	// num = 0;
+// 	// while (params->map[x][y])
+// 	// {
+// 	// 	if (params->map[x][y] != '\n')
+// 	// 		y++;
+// 	// 	else
+// 	// 	{
+// 	// 		num++;
+// 	// 		x++;
+// 	// 		y = 0;
+// 	// 	}
+// 	// 	if (params->map[x][y] == '\n' && num == 0)
+// 	// 	{
+// 	// 		error_handler(MAP_NOT_CLOSED);
+// 	// 	}
+// 	// }
+// 	// ft_printf("%d num\n", num);
+// 	// ft_printf("%d x\n", x);
+// 	// ft_printf("%d y\n", y);
+// }
 
 static int	valid_char_check(char *map_line)
 {
@@ -101,7 +129,6 @@ int	map_validator(t_params *params)
 		error_handler(PLAYER_AMOUNT_INCORRECT);
 	return (0);
 }
-
 
 void	fill_map_params(t_params *params, int fd)
 {
