@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:11:27 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/11 17:21:05 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/12 09:43:53 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,22 @@ static void	dda_algo(t_player *player, t_params *params)
 	}
 }
 
-// uint32_t	wall_color(t_params *params, t_player *player)
-// {
-// 	uint32_t	color;
-// 	int			x;
-// 	int			y;
-// 	int			index;
+uint32_t	wall_color(t_params *params, t_player *player)
+{
+	uint32_t	color;
+	int			x;
+	int			y;
+	int			index;
 
-// 	y = player->text_y;
-// 	x = player->text_x;
-// 	index = y * (int)params->no_texture->height
-// 		* (int)params->no_texture->bytes_per_pixel + x
-// 		* (int)params->no_texture->bytes_per_pixel;
-// 	color = params->no_texture->pixels[index] << 24 | params->no_texture->pixels[index
-// 		+ 1] << 16 | params->no_texture->pixels[index + 2] << 8 | 255;
-// 	return (color);
-// }
+	y = player->text_y;
+	x = player->text_x;
+	index = y * (int)params->ea_texture->height
+		* (int)params->ea_texture->bytes_per_pixel + x
+		* (int)params->ea_texture->bytes_per_pixel;
+	color = params->ea_texture->pixels[index] << 24 | params->ea_texture->pixels[index
+		+ 1] << 16 | params->ea_texture->pixels[index + 2] << 8 | 255;
+	return (color);
+}
 
 static void	vertical_draw(int x, t_player *player, t_params *params)
 {
@@ -104,7 +104,7 @@ static void	vertical_draw(int x, t_player *player, t_params *params)
 		texture_pos += step;
 		if (player->side == 1)
 			params->wall_c = (params->wall_c >> 1) & 8355711;
-		params->wall_c = get_rgba(145, 120, 70);
+		params->wall_c = wall_color(params, player);
 		mlx_put_pixel(params->image, x, y, params->wall_c);
 		y++;
 	}
@@ -148,7 +148,6 @@ void	raycasting(t_player *player, t_params *params)
 	int	i;
 
 	i = 0;
-
 	while (i < SCREEN_WIDTH)
 	{
 		ray_calc(player, i);
@@ -160,10 +159,3 @@ void	raycasting(t_player *player, t_params *params)
 		i++;
 	}
 }
-
-
-/*
-To do list
-
-Give the player a direction based on the character.
-*/

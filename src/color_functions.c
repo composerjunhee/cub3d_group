@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:30:01 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/11 16:31:14 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/12 09:40:47 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	draw_floor_ceiling(t_params *param)
 	int	y;
 
 	y = 0;
-
 	while (y < SCREEN_HEIGHT)
 	{
 		x = 0;
@@ -58,7 +57,6 @@ static int	convert_string_to_color(char *line)
 	free(tmp);
 	return (result);
 }
-
 
 int	get_color(char *line)
 {
