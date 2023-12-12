@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:11:27 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 09:43:53 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/12 14:52:13 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void	dda_algo(t_player *player, t_params *params)
 {
 	while (player->hit == 0)
 	{
-		//jump to next map square, either in x-direction, or in y-directiong
 		if (player->side_dist_x < player->side_dist_y)
 		{
 			player->side_dist_x += player->delta_dist_x;
@@ -65,7 +64,6 @@ static void	dda_algo(t_player *player, t_params *params)
 			params->map_y += player->step_y;
 			player->side = 1;
 		}
-		//Check if ray has hit a wall
 		if (params->map[params->map_y][params->map_x] == '1')
 			player->hit = 1;
 	}
@@ -119,7 +117,6 @@ void	calculate_walls(t_player *player)
 	else
 		player->perp_wall_dist = (player->side_dist_y - player->delta_dist_y);
 	player->line_height = (int)(SCREEN_HEIGHT / player->perp_wall_dist);
-	//calculate lowest and highest pixel to fill in current stripe
 	player->draw_start = -(player->line_height) / 2 + SCREEN_HEIGHT / 2;
 	if (player->draw_start < 0)
 		player->draw_start = 0;

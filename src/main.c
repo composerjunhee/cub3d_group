@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/11 16:37:57 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/12 15:11:56 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,25 @@ static void	init_params(t_params *params)
 	}
 }
 
-void	my_keyhook(mlx_key_data_t keydata, void *param)
+void	my_keyhook(t_params *param)
 {
-	// mlx_is_key_down()
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(param->mlx, MLX_KEY_W))
 	{
-		// move_w()
-		ft_printf("FORWARD MARCH\n");
+		move_w(param);
 	}
-	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(param->mlx, MLX_KEY_A))
 	{
-		// move_a()
-		ft_printf("LEFT MARCH\n");
+		move_a(param);
 	}
-	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(param->mlx, MLX_KEY_S))
 	{
-		// move_s()
-		ft_printf("BACKWARD MARCH\n");
+		move_s(param);
 	}
-	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(param->mlx, MLX_KEY_D))
 	{
-		// move_d()
-		ft_printf("RIGHT MARCH\n");
+		move_d(param);
 	}
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(param->mlx, MLX_KEY_ESCAPE))
 	{
 		free_map_params(param);
 		exit(0);
@@ -75,6 +70,7 @@ void	render(t_params *param)
 		* sizeof(int32_t));
 	draw_floor_ceiling(param);
 	raycasting(param->player, param);
+	param->player->move_speed = 5.0 * param->mlx->delta_time;
 }
 
 int	main(int argc, char **argv)
@@ -90,8 +86,8 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		error_handler(FD_FAILURE);
 	get_map_params(fd, &params);
-	mlx_key_hook(params.mlx, &my_keyhook, &params);
 	mlx_loop_hook(params.mlx, (void *)render, &params);
+	mlx_loop_hook(params.mlx, (void *)my_keyhook, &params);
 	mlx_loop(params.mlx);
 	free_map_params(&params);
 	return (0);
