@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: junheeki <junheeki@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:30:01 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 18:24:17 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/13 16:06:04 by junheeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	get_color(char *line)
 	if (i < 3)
 		error_handler(WRONG_INPUT);
 	res = get_rgba(rgb[0], rgb[1], rgb[2]);
-	while (*tmp)
-		free(*tmp++);
+	ft_split_free(tmp);
 	return (res);
 }

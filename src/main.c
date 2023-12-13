@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: junheeki <junheeki@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 18:12:45 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/13 15:47:30 by junheeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_handler(WRONG_INPUT);
 	init_params(&params);
-	params.map_path = ft_strdup(argv[1]);
+	params.map_path = ft_strdup(argv[1]); // malloc protection
 	fd = open(params.map_path, 2);
 	if (fd == -1)
 		error_handler(FD_FAILURE);
