@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junheeki <junheeki@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/13 15:47:30 by junheeki         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:10:38 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,20 @@ void	render(t_params *param)
 	raycasting(param->player, param);
 }
 
+void	close_game(t_params *param)
+{
+	free_map_params(param);
+	mlx_close_window(param->mlx);
+	exit(0);
+}
+
 static void	game_loop(t_params *params)
 {
 	mlx_loop_hook(params->mlx, (void *)render, params);
 	mlx_loop_hook(params->mlx, (void *)my_keyhook, params);
+	mlx_close_hook(params->mlx, (void *)close_game, params);
 	mlx_loop(params->mlx);
+	mlx_terminate(params->mlx);
 }
 
 int	main(int argc, char **argv)
