@@ -164,11 +164,11 @@ void	check_for_hit(t_params *params, t_player *player)
 {
 	params->map_x = (int)player->pos_x;
 	params->map_y = (int)player->pos_y;
-	if (player->delta_dist_x == 0)
+	if (player->ray_dir_x == 0)
 		player->delta_dist_x = MASSIVE_NUM;
 	else
 		player->delta_dist_x = fabs(1 / player->ray_dir_x);
-	if (player->delta_dist_y == 0)
+	if (player->ray_dir_y == 0)
 		player->delta_dist_y = MASSIVE_NUM;
 	else
 		player->delta_dist_y = fabs(1 / player->ray_dir_y);
