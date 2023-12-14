@@ -152,7 +152,7 @@ void	calculate_walls(t_player *player)
 	else
 		player->perp_wall_dist = (player->side_dist_y - player->delta_dist_y);
 	player->line_height = (int)(SCREEN_HEIGHT / player->perp_wall_dist);
-	player->draw_start = -(player->line_height) / 2 + SCREEN_HEIGHT / 2;
+	player->draw_start = SCREEN_HEIGHT / 2 - ray->line_height / 2;
 	if (player->draw_start < 0)
 		player->draw_start = 0;
 	player->draw_end = player->line_height / 2 + SCREEN_HEIGHT / 2;
