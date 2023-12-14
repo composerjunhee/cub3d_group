@@ -43,7 +43,7 @@ void	calculate_texture(t_params *params)
 	params->player->text_x = (int)(params->wall_x * (double)TEXTURE_W);
 	if (params->player->side == 0 & params->player->ray_dir_x > 0)
 		params->player->text_x = TEXTURE_W - params->player->text_x - 1;
-	if (params->player->side == 1 & params->player->ray_dir_x < 0)
+	if (params->player->side == 1 & params->player->ray_dir_y < 0)
 		params->player->text_x = TEXTURE_W - params->player->text_x - 1;
 }
 
