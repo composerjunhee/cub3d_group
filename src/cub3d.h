@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/14 11:20:32 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/14 15:12:59 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define SCREEN_WIDTH 960
 # define SCREEN_HEIGHT 540
 # define MASSIVE_NUM 1e30
-# define TEXTURE_H 128
-# define TEXTURE_W 128
+# define TEXTURE_H 64
+# define TEXTURE_W 64
 # define FOV 0.66
 
 # include "libft.h"

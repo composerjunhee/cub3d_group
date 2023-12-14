@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:11:27 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/14 14:22:25 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/14 14:50:15 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	select_texture(t_params *params)
 	if (params->player->side == 0)
 	{
 		if (params->map_x > params->player->pos_x)
-			params->text_to_draw = params->ea_texture;
+			params->text_to_draw = params->we_texture;
 		else
-			params->text_to_draw = params->no_texture;
+			params->text_to_draw = params->ea_texture;
 	}
 	else if (params->player->side == 1)
 	{
 		if (params->map_y > params->player->pos_y)
-			params->text_to_draw = params->so_texture;
+			params->text_to_draw = params->no_texture;
 		else
-			params->text_to_draw = params->we_texture;
+			params->text_to_draw = params->so_texture;
 	}
 }
 
