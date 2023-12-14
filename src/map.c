@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 17:17:07 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/14 13:28:01 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ static int	valid_char_check(char *map_line)
 	i = 0;
 	while (map_line[i])
 	{
-		if (map_line[i] != '1' && map_line[i] != '0' && map_line[i] != 'W'
-			&& map_line[i] != 'N' && map_line[i] != 'E' && map_line[i] != 'S'
-			&& map_line[i] != ' ' && map_line[i] != '\n')
+		if (!accepted_char(map_line[i]))
 		{
+			ft_printf("%c\n", map_line[i]);
 			return (0);
 		}
 		i++;
@@ -141,6 +140,8 @@ void	fill_map_params(t_params *params, int fd)
 		error_handler(NOT_ENOUGH_PARAMS);
 	while (read_line)
 	{
+		if (accepted_map_line(read_line) == -1)
+			error_handler(MAP_NOT_CLOSED);
 		line = ft_strjoinfree(line, read_line);
 		free(read_line);
 		read_line = NULL;

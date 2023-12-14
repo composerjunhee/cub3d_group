@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:43:12 by junheeki          #+#    #+#             */
-/*   Updated: 2023/12/12 18:26:45 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/14 13:33:01 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	move_w(t_params *params)
 			* params->player->move_speed;
 }
 
-void	move_a(t_params *params)
+void	move_d(t_params *params)
 {
 	int	x;
 	int	y;
@@ -69,7 +69,7 @@ void	move_s(t_params *params)
 			* params->player->move_speed;
 }
 
-void	move_d(t_params *params)
+void	move_a(t_params *params)
 {
 	int	x;
 	int	y;

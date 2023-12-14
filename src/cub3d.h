@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 18:25:34 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/14 11:20:32 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ typedef struct s_params
 }					t_params;
 
 /* UTILITIES */
-int					skip_leading_whitespace(char *line);
+int					accepted_map_line(char *str);
+int					accepted_char(char c);
 int					is_player(char c);
 int					is_out_of_bounds(char *row, int pos);
 void				error_handler(int error_code);

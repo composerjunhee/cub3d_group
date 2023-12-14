@@ -6,20 +6,34 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/11 17:20:09 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/14 13:14:59 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	skip_leading_whitespace(char *line)
+int	accepted_char(char c)
 {
-	while (line)
+	if (c == '1' || c == '0' || c == 'E'
+		|| c == 'N' || c == 'S' || c == 'W' || c == ' ')
+		return (1);
+	else
+		return (0);
+}
+
+int	accepted_map_line(char *str)
+{
+	int		i;
+	bool	accept;
+
+	i = 0;
+	while (str[i])
 	{
-		if (*line == 32 || (*line >= 9 && *line <= 13))
-			line++;
-		else
-			return (0);
+		if (accepted_char(str[i]))
+			accept = true;
+		if (str[i] == '\n' && accept == false)
+			error_handler(MAP_NOT_CLOSED);
+		i++;
 	}
 	return (1);
 }

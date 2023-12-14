@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:12:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/08 10:31:45 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/14 13:07:37 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ int	is_out_of_bounds(char *row, int pos)
 
 	if (!row)
 		error_handler(MAP_NOT_CLOSED);
-	if (row[pos] == ' ' || row[pos] == '\n' || \
+	if (row[pos] == '\n' || \
 		row[pos] == '\t' || row[pos] == '\0')
 		error_handler(MAP_NOT_CLOSED);
 	len = ft_strlen(row);
-
 	if (pos > len || pos < 0)
 		return (1);
 	else
