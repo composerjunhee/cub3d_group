@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/14 13:28:01 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/14 14:34:40 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ static	void	get_orientation(char direction, t_params *params)
 {
 	if (direction == 'N')
 		set_n_s_orientation(params->player, -1.0, FOV);
-	if (direction == 'E')
-		set_w_e_orientation(params->player, 1.0, -FOV);
-	if (direction == 'W')
-		set_w_e_orientation(params->player, -1.0, FOV);
 	if (direction == 'S')
 		set_n_s_orientation(params->player, 1.0, -FOV);
+	if (direction == 'E')
+		set_w_e_orientation(params->player, 1.0, FOV);
+	if (direction == 'W')
+		set_w_e_orientation(params->player, -1.0, -FOV);
 }
 
 static int	valid_char_num_check(t_params *params, char *map_line, int y)

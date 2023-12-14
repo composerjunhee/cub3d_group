@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/14 13:34:10 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/14 14:36:00 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	my_keyhook(t_params *param)
 	if (mlx_is_key_down(param->mlx, MLX_KEY_D))
 		move_d(param);
 	if (mlx_is_key_down(param->mlx, MLX_KEY_LEFT))
-		rotation(param, 1);
-	if (mlx_is_key_down(param->mlx, MLX_KEY_RIGHT))
 		rotation(param, -1);
+	if (mlx_is_key_down(param->mlx, MLX_KEY_RIGHT))
+		rotation(param, 1);
 	if (mlx_is_key_down(param->mlx, MLX_KEY_ESCAPE))
 	{
 		free_map_params(param);
