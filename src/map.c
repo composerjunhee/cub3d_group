@@ -6,40 +6,11 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/14 14:34:40 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/15 15:19:14 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// static void	valid_map_space(char *line)
-// {	
-// 	// int num;
-// 	// int x;
-// 	// int y;
-
-// 	// x = 0;
-// 	// y = 0;
-// 	// num = 0;
-// 	// while (params->map[x][y])
-// 	// {
-// 	// 	if (params->map[x][y] != '\n')
-// 	// 		y++;
-// 	// 	else
-// 	// 	{
-// 	// 		num++;
-// 	// 		x++;
-// 	// 		y = 0;
-// 	// 	}
-// 	// 	if (params->map[x][y] == '\n' && num == 0)
-// 	// 	{
-// 	// 		error_handler(MAP_NOT_CLOSED);
-// 	// 	}
-// 	// }
-// 	// ft_printf("%d num\n", num);
-// 	// ft_printf("%d x\n", x);
-// 	// ft_printf("%d y\n", y);
-// }
 
 static int	valid_char_check(char *map_line)
 {
@@ -129,6 +100,21 @@ int	map_validator(t_params *params)
 	return (0);
 }
 
+int	multiple_newlines(char *line)
+{
+	int	i;
+
+	i = 0;
+
+	while (line[i])
+	{
+		i++;
+		if (line[i] == '\n' && line[i - 1] == '\n')
+			return (-1);
+	}
+	return (1);
+}
+
 void	fill_map_params(t_params *params, int fd)
 {
 	char	*line;
@@ -136,13 +122,20 @@ void	fill_map_params(t_params *params, int fd)
 
 	line = ft_strdup("");
 	read_line = get_next_line(fd);
+	while (1)
+	{
+		if (ft_strncmp(read_line, "\n", 1))
+			break ;
+		free(read_line);
+		read_line = get_next_line(fd);
+	}
 	if (!read_line)
 		error_handler(NOT_ENOUGH_PARAMS);
 	while (read_line)
 	{
-		if (accepted_map_line(read_line) == -1)
-			error_handler(MAP_NOT_CLOSED);
 		line = ft_strjoinfree(line, read_line);
+		if (!multiple_newlines(line))
+			error_handler(MAP_NOT_CLOSED);
 		free(read_line);
 		read_line = NULL;
 		read_line = get_next_line(fd);

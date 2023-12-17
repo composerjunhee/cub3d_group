@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junheeki <junheeki@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:30:01 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/13 16:06:04 by junheeki         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:39:14 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	draw_floor_ceiling(t_params *param)
 		while (x < SCREEN_WIDTH)
 		{
 			if (y < SCREEN_HEIGHT / 2)
-				mlx_put_pixel(param->image, x, y, param->f_values);
-			else
 				mlx_put_pixel(param->image, x, y, param->c_values);
+			else
+				mlx_put_pixel(param->image, x, y, param->f_values);
 			x++;
 		}
 		y++;

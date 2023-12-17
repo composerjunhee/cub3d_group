@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/14 13:14:59 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/15 10:11:01 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ int	accepted_char(char c)
 int	accepted_map_line(char *str)
 {
 	int		i;
-	bool	accept;
 
 	i = 0;
 	while (str[i])
 	{
-		if (accepted_char(str[i]))
-			accept = true;
-		if (str[i] == '\n' && accept == false)
+		if (!accepted_char(str[i]))
 			error_handler(MAP_NOT_CLOSED);
 		i++;
 	}

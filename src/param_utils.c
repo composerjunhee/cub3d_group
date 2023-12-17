@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:33:29 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/12 15:20:37 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/15 15:13:18 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,14 @@ void	load_texture(char *line, mlx_texture_t **texture)
 	len = ft_strlen(line);
 	line[len - 1] = '\0';
 	*texture = mlx_load_png(line);
+	if (!*texture)
+		error_handler(FD_FAILURE);
 }
 
 int	handle_params(char *line, t_params *params)
-{
+{	
+	if (!multiple_newlines(line))
+		return (0);
 	if (ft_strncmp("NO ", (const char *)line, 3) == 0)
 	{
 		load_texture(line + 3, &(params->no_texture));
