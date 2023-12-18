@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:12:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/17 12:21:16 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/18 17:23:10 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,6 @@ int	is_player(char c)
 	}
 	return (0);
 }
-
-// static int newline_check(char *str)
-// {
-// 	int	i;
-// 	int	nl;
-
-// 	i = 0;
-// 	nl = 0;
-
-// 	while (str[i])
-// 	{
-// 		if (str[i] == '\n')
-// 			nl++;
-// 		i++;
-// 	}
-// 	return (nl);
-// }
 
 void	are_params_valid(int fd, t_params *params)
 {
