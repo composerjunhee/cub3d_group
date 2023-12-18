@@ -120,7 +120,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_handler(WRONG_INPUT);
 	init_params(&params);
-	params.map_path = ft_strdup(argv[1]); // malloc protection
+	params.map_path = ft_strdup(argv[1]);
+	if(!params.map_path)
+		return(NULL);
 	fd = open(params.map_path, 2);
 	if (fd == -1)
 		error_handler(FD_FAILURE);

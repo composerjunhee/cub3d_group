@@ -104,6 +104,7 @@ void				closed_map_check(t_params *params);
 void				free_map_params(t_params *params);
 /* PARAMETER HANDLING */
 void				are_params_valid(int fd, t_params *params);
+int					inner_handle_params(char *line, t_params *params);
 int					handle_params(char *line, t_params *params);
 void				load_texture(char *line, mlx_texture_t **texture);
 int					map_validator(t_params *params);
