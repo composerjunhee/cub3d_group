@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/15 15:19:14 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/18 15:22:47 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	multiple_newlines(char *line)
 	{
 		i++;
 		if (line[i] == '\n' && line[i - 1] == '\n')
-			return (-1);
+			return (0);
 	}
 	return (1);
 }
@@ -122,15 +122,18 @@ void	fill_map_params(t_params *params, int fd)
 
 	line = ft_strdup("");
 	read_line = get_next_line(fd);
-	while (1)
-	{
-		if (ft_strncmp(read_line, "\n", 1))
-			break ;
-		free(read_line);
-		read_line = get_next_line(fd);
-	}
 	if (!read_line)
 		error_handler(NOT_ENOUGH_PARAMS);
+	if (*read_line != '1' || *read_line != ' ')
+	{
+		while (1)
+		{
+			if (ft_strncmp(read_line, "\n", 1))
+				break ;
+			free(read_line);
+			read_line = get_next_line(fd);
+		}
+	}
 	while (read_line)
 	{
 		line = ft_strjoinfree(line, read_line);

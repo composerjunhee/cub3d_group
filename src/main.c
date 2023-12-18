@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/14 14:36:00 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/18 14:43:11 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int	main(int argc, char **argv)
 	init_params(&params);
 	params.map_path = ft_strdup(argv[1]);
 	if(!params.map_path)
-		return(NULL);
+		return(0);
 	fd = open(params.map_path, 2);
 	if (fd == -1)
 		error_handler(FD_FAILURE);
