@@ -1,15 +1,11 @@
 NO ./textures/NO.png
 SO ./textures/SO.png
-WE ./textures/WE.png
+WE ./textures/EA.png
 EA ./textures/EA.png
 
 F 22,100,0
 C 225,30,0
 
-1111111
-1000001
-100 111
-10 W 01
-111 111
-1000001
-1111111
+      
+  W0  
+      

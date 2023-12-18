@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/18 17:48:17 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/18 18:08:29 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,7 @@ static int	valid_char_check(char *map_line)
 		if (!accepted_char(map_line[i]))
 			return (0);
 		if (map_line[i] == ' ')
-		{
-			ft_printf("%c\n", map_line[i]);
 			map_line[i] = '1';
-			ft_printf("%c\n", map_line[i]);
-		}
 		i++;
 	}
 	return (1);
