@@ -6,13 +6,12 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/19 15:04:08 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/19 18:37:24 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define MAP_PATH "../map/basic.cub"
 # define SCREEN_WIDTH 960
 # define SCREEN_HEIGHT 540
 # define MASSIVE_NUM 1e30
@@ -37,6 +36,7 @@ enum				e_codes
 	MAP_NOT_CLOSED = -8,
 	ALLOCATION_ERROR = -9,
 	INVALID_COLOR = -10,
+	NO_MAP = -11,
 }					code;
 
 typedef struct s_player

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:28:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/19 14:58:51 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/19 18:39:59 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	fill_map_params(t_params *params, int fd)
 		error_handler(NOT_ENOUGH_PARAMS);
 	if (*read_line != '1' || *read_line != ' ')
 	{
-		while (1)
+		while (read_line)
 		{
 			if (ft_strncmp(read_line, "\n", 1))
 				break ;
@@ -89,6 +89,8 @@ void	fill_map_params(t_params *params, int fd)
 			read_line = get_next_line(fd);
 		}
 	}
+	if (!read_line)
+		error_handler(NO_MAP);
 	fill_map(read_line, line, fd, params);
 }
 

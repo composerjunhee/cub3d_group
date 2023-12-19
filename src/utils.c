@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 07:36:13 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/15 10:11:01 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/19 18:35:18 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	error_handler(int error_code)
 		ft_putstr_fd("Allocation failed.\n", 2);
 	else if (error_code == INVALID_COLOR)
 		ft_putstr_fd("Color is not within the RGB range.\n", 2);
+	else if (error_code == NO_MAP)
+		ft_putstr_fd("No map in file.\n", 2);
 	else
 		ft_putstr_fd("Unknown1 error occurred.\n", 2);
 	exit(error_code);
