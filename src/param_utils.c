@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:33:29 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/18 17:22:32 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/19 14:59:23 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ int	handle_params(char *line, t_params *params)
 		params->c_values = get_color(line);
 		return (1);
 	}
-	if (ft_strncmp("EA ", (const char *)line, 3) == 0 || ft_strncmp("WE ", (const char *)line, 3) == 0
-		|| ft_strncmp("SO ", (const char *)line, 3) == 0 || ft_strncmp("NO ", (const char *)line, 3) == 0)
+	if (ft_strncmp("EA ", (const char *)line, 3) == 0 || ft_strncmp("WE ",
+			(const char *)line, 3) == 0 || ft_strncmp("SO ", (const char *)line,
+			3) == 0 || ft_strncmp("NO ", (const char *)line, 3) == 0)
 	{
 		inner_handle_params(line, params);
 		return (1);
 	}
-		
 	return (0);
 }
 

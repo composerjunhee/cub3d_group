@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:12:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/18 17:23:10 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/19 14:52:04 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,43 @@ void	are_params_valid(int fd, t_params *params)
 		if (param_count != 6)
 			line = get_next_line(fd);
 	}
+}
+
+int	valid_char_check(char *map_line)
+{
+	int	i;
+
+	i = 0;
+	while (map_line[i])
+	{
+		if (!accepted_char(map_line[i]))
+			return (0);
+		if (map_line[i] == ' ')
+			map_line[i] = '1';
+		i++;
+	}
+	return (1);
+}
+
+int	valid_char_num_check(t_params *params, char *map_line, int y)
+{
+	int	i;
+
+	i = 0;
+	while (map_line[i])
+	{
+		if (map_line[i] == 'W' || map_line[i] == 'N' || map_line[i] == 'E'
+			|| map_line[i] == 'S')
+		{
+			get_orientation(map_line[i], params);
+			params->player->pos_x = (double)i + 0.3;
+			params->player->pos_y = (double)y + 0.3;
+			params->player_amount++;
+		}
+		i++;
+	}
+	if (params->player_amount > 1)
+		return (0);
+	else
+		return (1);
 }

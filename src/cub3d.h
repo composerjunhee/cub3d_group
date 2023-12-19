@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:54:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/15 15:05:13 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/19 15:04:08 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,13 @@ int					get_color(char *line);
 /* MAP HANDLING */
 void				get_map_params(int fd, t_params *params);
 void				fill_map_params(t_params *params, int fd);
+void				fill_map(char *read_line, char *line,
+						int fd, t_params *params);
 void				closed_map_check(t_params *params);
 void				free_map_params(t_params *params);
+int					valid_char_num_check(t_params *params,
+						char *map_line, int y);
+int					valid_char_check(char *map_line);
 /* PARAMETER HANDLING */
 void				are_params_valid(int fd, t_params *params);
 int					inner_handle_params(char *line, t_params *params);
@@ -109,21 +114,27 @@ int					handle_params(char *line, t_params *params);
 void				load_texture(char *line, mlx_texture_t **texture);
 int					map_validator(t_params *params);
 void				my_keyhook(t_params *param);
-int					multiple_newlines(char *line);
+int					check_illegal_content(char *line);
+void				get_orientation(char direction, t_params *params);
 /* RENDERING */
 void				raycasting(t_player *player, t_params *params);
 void				check_for_hit(t_params *params, t_player *player);
 void				calculate_walls(t_player *player);
 void				ray_calc(t_player *player, int i);
+void				raycast_calc(t_player *player, t_params *params);
+void				dda_algo(t_player *player, t_params *params);
 uint32_t			wall_color(t_params *params, t_player *player);
 void				render(t_params *param);
 void				draw_floor_ceiling(t_params *param);
 int					get_rgba(int r, int g, int b);
+void				calculate_texture(t_params *params);
+void				select_texture(t_params *params);
 
 /* CONTROLLER */
 void				move_w(t_params *params);
 void				move_a(t_params *params);
 void				move_s(t_params *params);
 void				move_d(t_params *params);
+void				rotation(t_params *params, int direction);
 
 #endif

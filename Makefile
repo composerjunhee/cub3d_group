@@ -15,7 +15,7 @@ AR			= ar
 ARFLAGS		= rcs
 
 SRC 		= \
-$S/main.c $S/utils.c $S/map.c  $S/param_utils.c $S/checker_functions.c $S/rendering.c $S/color_functions.c $S/controller.c
+$S/main.c $S/utils.c $S/map.c  $S/param_utils.c $S/checker_functions.c $S/rendering.c $S/color_functions.c $S/controller.c $S/orientation.c $S/ray.c $S/textures.c
 
 OBJ			= $(SRC:$S%=$O%.o)
 

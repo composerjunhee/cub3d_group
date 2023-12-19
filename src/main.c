@@ -6,12 +6,11 @@
 /*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:24:57 by rrask             #+#    #+#             */
-/*   Updated: 2023/12/18 14:43:11 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/19 14:58:00 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
 
 static void	init_params(t_params *params)
 {
@@ -37,55 +36,6 @@ static void	init_params(t_params *params)
 		mlx_close_window(params->mlx);
 		error_handler(FD_FAILURE);
 	}
-}
-
-static void	set_player_vals(t_params *param)
-{
-	param->player->move_speed = 4.0 * param->mlx->delta_time;
-	param->player->rot_speed = 3.0 * param->mlx->delta_time;
-}
-
-static void	rotation(t_params *params, int direction)
-{
-	double	old_dir_x;
-	double	old_plane_x;
-
-	old_dir_x = params->player->dir_x;
-	old_plane_x = params->player->plane_x;
-	params->player->dir_x = params->player->dir_x * cos(direction
-			* params->player->rot_speed) - params->player->dir_y * sin(direction
-			* params->player->rot_speed);
-	params->player->dir_y = old_dir_x * sin(direction
-			* params->player->rot_speed) + params->player->dir_y * cos(direction
-			* params->player->rot_speed);
-	params->player->plane_x = params->player->plane_x * cos(direction
-			* params->player->rot_speed) - params->player->plane_y
-		* sin(direction * params->player->rot_speed);
-	params->player->plane_y = old_plane_x * sin(direction
-			* params->player->rot_speed) + params->player->plane_y
-		* cos(direction * params->player->rot_speed);
-}
-
-void	my_keyhook(t_params *param)
-{
-	if (mlx_is_key_down(param->mlx, MLX_KEY_W))
-		move_w(param);
-	if (mlx_is_key_down(param->mlx, MLX_KEY_A))
-		move_a(param);
-	if (mlx_is_key_down(param->mlx, MLX_KEY_S))
-		move_s(param);
-	if (mlx_is_key_down(param->mlx, MLX_KEY_D))
-		move_d(param);
-	if (mlx_is_key_down(param->mlx, MLX_KEY_LEFT))
-		rotation(param, -1);
-	if (mlx_is_key_down(param->mlx, MLX_KEY_RIGHT))
-		rotation(param, 1);
-	if (mlx_is_key_down(param->mlx, MLX_KEY_ESCAPE))
-	{
-		free_map_params(param);
-		exit(0);
-	}
-	set_player_vals(param);
 }
 
 void	render(t_params *param)
@@ -121,8 +71,9 @@ int	main(int argc, char **argv)
 		error_handler(WRONG_INPUT);
 	init_params(&params);
 	params.map_path = ft_strdup(argv[1]);
-	if(!params.map_path)
-		return(0);
+	if (!params.map_path || !ft_strnstr(params.map_path, ".cub",
+			ft_strlen(params.map_path)))
+		error_handler(WRONG_INPUT);
 	fd = open(params.map_path, 2);
 	if (fd == -1)
 		error_handler(FD_FAILURE);
