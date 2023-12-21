@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rrask <rrask@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 13:30:09 by rrask             #+#    #+#             */
-/*   Updated: 2023/01/11 13:40:55 by rrask            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:13:30 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	format_handler(va_list args, const char *s)
+static int	format_handler(va_list *args, const char *s)
 {
 	int	pr_len;
 
 	pr_len = 0;
 	if (*s == 'c')
-		pr_len += handle_c(va_arg(args, int));
+		pr_len += handle_c(va_arg(*args, int));
 	if (*s == 's')
-		pr_len += handle_s(va_arg(args, char *));
+		pr_len += handle_s(va_arg(*args, char *));
 	if (*s == '%')
 		pr_len += handle_c('%');
 	if (*s == 'd' || *s == 'i')
-		pr_len += handle_num(va_arg(args, int));
+		pr_len += handle_num(va_arg(*args, int));
 	if (*s == 'x')
-		pr_len += handle_hexsmol(va_arg(args, unsigned int));
+		pr_len += handle_hexsmol(va_arg(*args, unsigned int));
 	if (*s == 'X')
-		pr_len += handle_hexbig(va_arg(args, unsigned int));
+		pr_len += handle_hexbig(va_arg(*args, unsigned int));
 	if (*s == 'u')
-		pr_len += handle_unsign(va_arg(args, unsigned int));
+		pr_len += handle_unsign(va_arg(*args, unsigned int));
 	if (*s == 'p')
-		pr_len += handle_void(va_arg(args, void *));
+		pr_len += handle_void(va_arg(*args, void *));
 	return (pr_len);
 }
 
@@ -50,7 +50,7 @@ int	ft_printf(const char *s, ...)
 		if (s[i] == '%')
 		{
 			i++;
-			pr_len += format_handler(args, &s[i]);
+			pr_len += format_handler(&args, &s[i]);
 			i++;
 		}
 		else if (s[i])

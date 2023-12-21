@@ -9,13 +9,13 @@ CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 INCLUDES	= -I$I -I$(LIBFT_I) -Iinclude -I./MLX42/include
 LIBRARIES	= -L./libft -lft -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -L./build/ -lmlx42
-FSANITIZE	=
+FSANITIZE	= 
 
 AR			= ar
 ARFLAGS		= rcs
 
 SRC 		= \
-$S/main.c
+$S/main.c $S/utils.c $S/map.c  $S/param_utils.c $S/checker_functions.c $S/rendering.c $S/color_functions.c $S/controller.c $S/orientation.c $S/ray.c $S/textures.c
 
 OBJ			= $(SRC:$S%=$O%.o)
 
@@ -42,7 +42,7 @@ $(OBJ): $O%.o: $S%
 $(NAME): $(LIBFT) $(OBJ)
 	cmake -B build MLX42
 	cmake --build build -j4
-	$(CC) $(OBJ) $(LIBRARIES) $(FSANITIZE) -framework Cocoa -framework OpenGL -framework IOKit -o $(NAME)
+	$(CC) $(OBJ) $(LIBRARIES) $(FSANITIZE) -o $(NAME)
 
 $(LIBFT):
 	make FLAGS=$(LIBFT_FLAGS) -C $(LIBFT_DIR)
